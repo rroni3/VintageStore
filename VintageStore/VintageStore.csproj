@@ -53,8 +53,24 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="ViewModels\" />
-	  <Folder Include="Views\" />
+	  <Compile Update="Views\LoadingPage.xaml.xaml.cs">
+	    <DependentUpon>LoadingPage.xaml.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\MainPage.xaml.xaml.cs">
+	    <DependentUpon>MainPage.xaml.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\LoadingPage.xaml.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MainPage.xaml.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StorePage.xaml.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

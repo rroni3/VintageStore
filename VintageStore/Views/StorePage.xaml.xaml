@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VintageStore.Views.StorePage.xaml"
+             Title="Vintage Store"
+             x:DataType="viewmodels:GamePageViewModel"
+             FlowDirection="RightToLeft">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" />
+    </Shell.BackButtonBehavior>
+    <VerticalStackLayout>
+        <Label
+    HorizontalOptions="Center"
+    Text="{Binding Message}"
+    VerticalOptions="Center" />
+        <Label Text="מצא Email" />
+        <Entry x:Name="nickName" Placeholder="הכנס כינוי משתמש" />
+        <Button
+    Command="{Binding SearchCommand}"
+    CommandParameter="{Binding Source={x:Reference nickName}, Path=Text}"
+    Text="חפש" />
+        <Label Text="{Binding FoundEmail}" />
+        <Image
+    Aspect="AspectFit"
+    HeightRequest="80"
+    Source="{Binding PhotoImageSource}"
+    WidthRequest="80">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Buttons="Primary" Command="{Binding ChangePhoto}" />
+            </Image.GestureRecognizers>
+        </Image>
+
+        <Button Command="{Binding TakePictureCommand}" Text="צלם תמונה" />
+    </VerticalStackLayout>
+</ContentPage>
