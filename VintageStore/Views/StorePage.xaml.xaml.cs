@@ -1,3 +1,4 @@
+using VintageStore.ViewModels;
 namespace VintageStore.Views;
 
 public partial class StorePage : ContentPage

@@ -1,9 +1,15 @@
+using VintageStore.ViewModels;
+
 namespace VintageStore.Views;
 
-public partial class NewPage2 : ContentPage
+public partial class MainPage : ContentPage
 {
-	public NewPage2()
+	public MainPage()
 	{
-		InitializeComponent();
-	}
+        public MainPage(MainPageViewModel vm)
+        {
+            this.BindingContext = vm;
+            InitializeComponent();
+        }
+    }
 }
