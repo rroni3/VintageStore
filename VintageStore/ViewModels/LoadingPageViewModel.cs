@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VintageStore.ViewModels
 {
-    public class LoadingPageViewModel
+    public class LoadingPageViewModel:ViewModel
     {
 
     }

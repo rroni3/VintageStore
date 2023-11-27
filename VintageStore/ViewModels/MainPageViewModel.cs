@@ -5,11 +5,13 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using VintageStore.Models;
+using VintageStore.Services;
 using VintageStore.Views;
 
 namespace VintageStore.ViewModels
 {
-    public class MainPageViewModel
+    public class MainPageViewModel:ViewModel
     {
         #region Fields
         private string _userName;//שם משתמש
@@ -24,7 +26,7 @@ namespace VintageStore.ViewModels
         #endregion
 
         #region Service component
-        private readonly StoreService _service;
+       private readonly StoreService _service;
         #endregion
 
         #region Properties
@@ -89,9 +91,9 @@ namespace VintageStore.ViewModels
         /// </summary>
         /// <param name="service">מקבלת באמצעות DI את אובייקט הAPI</param>
 
-        public MainPageViewModel(StoreService service)
+        public MainPageViewModel(/*StoreService service*/)
         {
-            _service = service;
+           // _service = service;
             UserName = string.Empty;
             Password = string.Empty;
 
@@ -105,21 +107,21 @@ namespace VintageStore.ViewModels
                     var lvm = new LoadingPageViewModel() { IsBusy = true };
                     await AppShell.Current.Navigation.PushModalAsync(new LoadingPage(lvm));
                     #endregion
-                    var user = await _service.LogInAsync(UserName, Password);
+                  //  var user = await _service.LogInAsync(UserName, Password);
                     await Task.Delay(1000);
                     lvm.IsBusy = false;
                     await Shell.Current.Navigation.PopModalAsync();
-                    if (!user.Success)
-                    {
-                        ShowLoginError = true;
-                        LoginErrorMessage = user.Message;
-                    }
-                    else
-                    {
-                        await AppShell.Current.DisplayAlert("התחברת", "אישור להתחלת משחק", "אישור");
-                        await SecureStorage.Default.SetAsync("LoggedUser", JsonSerializer.Serialize(user.User));
-                        await Shell.Current.GoToAsync("Game");
-                    }
+                    //if (!user.Success)
+                    //{
+                    //    ShowLoginError = true;
+                    //    LoginErrorMessage = user.Message;
+                    //}
+                 //   else
+                 //   {
+                 //       await AppShell.Current.DisplayAlert("התחברת", "אישור להתחלת משחק", "אישור");
+                 ////       await SecureStorage.Default.SetAsync("LoggedUser", JsonSerializer.Serialize(user));
+                 //       await Shell.Current.GoToAsync("Game");
+                 //   }
 
 
 

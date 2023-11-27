@@ -1,21 +1,22 @@
 using VintageStore.ViewModels;
-namespace VintageStore.Views;
+namespace VintageStore.Views {
 
-public partial class StorePage : ContentPage
-{
-    public StorePage(StorePageViewModel vm)
+    public partial class StorePage : ContentPage
     {
-        this.BindingContext = vm;
-        InitializeComponent();
-    }
-
-    protected override async void OnAppearing()
-    {
-        base.OnAppearing();
-        var user = SecureStorage.GetAsync("LoggedUser");
-        if (user == null)
+        public StorePage(StorePageViewModel vm)
         {
-            await AppShell.Current.GoToAsync("MainPage");
+            this.BindingContext = vm;
+            InitializeComponent();
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            var user = SecureStorage.GetAsync("LoggedUser");
+            if (user == null)
+            {
+                await AppShell.Current.GoToAsync("MainPage");
+            }
         }
     }
 }

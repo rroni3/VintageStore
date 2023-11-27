@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using VintageStore.Models;
+using VintageStore.Services;
 using VintageStore.Views;
 
 namespace VintageStore.ViewModels
 {
-    public class StorePageViewModel
+    public class StorePageViewModel:ViewModel
     {
 
         #region Fields
@@ -18,7 +21,7 @@ namespace VintageStore.ViewModels
         #endregion
 
         #region Service
-        readonly private StoreService _StoreService;
+       readonly private StoreService _StoreService;
         #endregion
 
         #region Properties
@@ -44,12 +47,12 @@ namespace VintageStore.ViewModels
         /// <param name="storeService"></param>
         public StorePageViewModel(StoreService StoreService)
         {
-            _StoreService = StoreService;
+           // _StoreService = StoreService;
             var u = SecureStorage.Default.GetAsync("LoggedUser").Result;
             var user = JsonSerializer.Deserialize<User>(u);
             Message = $"Hello {user.FirstName}";
             //מוצאת אימייל של יוזר לפי השם שלו
-            SearchCommand = new Command<string>(async (x) => FoundEmail = await _StoreService.GetUserEmail(x));
+           SearchCommand = new Command<string>(async (x) => FoundEmail = await _StoreService.GetUserEmail(x));
             UploadPhoto = new Command(async () => { await Shell.Current.DisplayAlert("g", "g", "ok"); });
             TakePictureCommand = new Command(TakePicture);
             ChangePhoto = new Command(TakePicture);
