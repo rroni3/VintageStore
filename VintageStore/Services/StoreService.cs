@@ -18,6 +18,11 @@ namespace VintageStore.Services
             throw new NotImplementedException();
         }
 
+        internal Task LogInAsync(string userName, string password)
+        {
+            throw new NotImplementedException();
+        }
+
         internal Task<bool> UploadFile(FileResult file)
         {
             throw new NotImplementedException();

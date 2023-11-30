@@ -23,6 +23,7 @@ namespace VintageStore.ViewModels
         private string _passwordErrorMessage;
         private bool _showLoginError;//
         private string _loginErrorMessage;
+        private StoreService _storeService;
         #endregion
 
         #region Service component
@@ -91,9 +92,9 @@ namespace VintageStore.ViewModels
         /// </summary>
         /// <param name="service">מקבלת באמצעות DI את אובייקט הAPI</param>
 
-        public MainPageViewModel(/*StoreService service*/)
+        public MainPageViewModel(StoreService service)
         {
-           // _service = service;
+            _service = service;
             UserName = string.Empty;
             Password = string.Empty;
 
@@ -107,7 +108,7 @@ namespace VintageStore.ViewModels
                     var lvm = new LoadingPageViewModel() { IsBusy = true };
                     await AppShell.Current.Navigation.PushModalAsync(new LoadingPage(lvm));
                     #endregion
-                  //  var user = await _service.LogInAsync(UserName, Password);
+                    //var user = await _service.LogInAsync(UserName, Password);
                     await Task.Delay(1000);
                     lvm.IsBusy = false;
                     await Shell.Current.Navigation.PopModalAsync();
