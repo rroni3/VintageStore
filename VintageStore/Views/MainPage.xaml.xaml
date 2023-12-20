@@ -70,7 +70,7 @@
                         Placeholder="Enter Password"
                         PlaceholderColor="Gray"
                         Text="{Binding Password}"
-                        TextColor="White" />
+                        TextColor="Black" />
                         <Label
                         Grid.Row="1"
                         IsVisible="{Binding ShowPasswordError}"
