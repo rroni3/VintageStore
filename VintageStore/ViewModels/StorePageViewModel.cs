@@ -52,7 +52,7 @@ namespace VintageStore.ViewModels
             var user = JsonSerializer.Deserialize<User>(u);
             Message = $"Hello {user.FirstName}";
             //מוצאת אימייל של יוזר לפי השם שלו
-           SearchCommand = new Command<string>(async (x) => FoundEmail = await _StoreService.GetUserEmail(x));
+            SearchCommand = new Command<string>(async(x)=> { });//async (x) => FoundEmail = await _StoreService.GetUserEmail(x));
             UploadPhoto = new Command(async () => { await Shell.Current.DisplayAlert("g", "g", "ok"); });
             TakePictureCommand = new Command(TakePicture);
             ChangePhoto = new Command(TakePicture);
@@ -129,13 +129,13 @@ namespace VintageStore.ViewModels
             {
 
                 // bool success = await _gameService.UploadPhoto(file);
-                bool success = await _StoreService.UploadFile(file);
-                if (success)
-                {
-                    var u = JsonSerializer.Deserialize<User>(await SecureStorage.Default.GetAsync("LoggedUser"));
-                    ImageLocation = await _StoreService.GetImage() + $"{u.Id}.jpg";
-                }
-                else
+                //bool success = await _StoreService.UploadFile(file);
+                //if (success)
+                //{
+                //    var u = JsonSerializer.Deserialize<User>(await SecureStorage.Default.GetAsync("LoggedUser"));
+                //    ImageLocation = await _StoreService.GetImage() + $"{u.Id}.jpg";
+                //}
+                //else
                     Shell.Current.DisplayAlert("אין קשר לשרת", "לא הצלחתי להעלות את התמונה. נסה שוב", "אישור");
             }
             catch (Exception ex) { }

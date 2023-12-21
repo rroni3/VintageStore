@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace VintageStore.Models
 {
-    internal class LoginDTO
+    public class LoginDTO
     {
+        public string Username { get; set; }
+        public string Password { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Java.Net;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,69 +8,71 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using VintageStore.Models;
+using Microsoft.Extensions.Logging;
 
 namespace VintageStore.Services
 {
     public class StoreService
     {
-        internal Task<string> GetImage()
-        {
-            throw new NotImplementedException();
-        }
+        readonly HttpClient _httpClient;
+        readonly JsonSerializerOptions _serializerOptions;
+        const string URL = @"https://ldcxfb5h-7294.uks1.devtunnels.ms/api/storeapi/";
+        const string IMAGE_URL = @"https://ldcxfb5h-7294.uks1.devtunnels.ms/";
 
-        internal Task<string> GetUserEmail(string x)
+        public StoreService()
         {
-            throw new NotImplementedException();
-        }
+            _httpClient = new HttpClient();
 
-        internal Task LogInAsync(string userName, string password)
-        {
-            throw new NotImplementedException();
-        }
 
-        internal Task<bool> UploadFile(FileResult file)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<LoginDTO> LoginAsync(string UserName, string Password)
-        {
-            try
+            _serializerOptions = new JsonSerializerOptions()
             {
-                var user = new LoginDTO() { User = UserName, Password = Password };
-                var jsonContent = JsonSerializer.Serialize(user, _serializerOptions);
-                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-                var response = await httpClient.PostAsync($"{URL}LoginPage", content);
+                WriteIndented = true,
+                PropertyNameCaseInsensitive = true,
+                ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve
+            };
 
-                switch (response.StatusCode)
+        }
+
+            public async Task<UserDTO> LoginAsync(string UserName, string Password)
+            {
+                try
                 {
-                    case (HttpStatusCode.OK):
-                        {
-                            jsonContent = await response.Content.ReadAsStringAsync();
-                            User u = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions);
-                            await Task.Delay(2000);
-                            return new LoginDTO() { Success = true, Message = string.Empty, Password = u.UserPswd, User = u.UserName };
+                    var user = new LoginDTO() {  Username = UserName, Password = Password };
+                    var jsonContent = JsonSerializer.Serialize(user, _serializerOptions);
+                    var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                    var response = await _httpClient.PostAsync($"{URL}Login", content);
 
-                        }
-                    case (HttpStatusCode.Unauthorized):
-                        {
-                            return new LoginDTO() { Success = false, User = null, Password = null, Message = Models.Messages.INVALID_LOGIN };
+                    switch (response.StatusCode)
+                    {
+                        case (HttpStatusCode.OK):
+                            {
+                                jsonContent = await response.Content.ReadAsStringAsync();
+                                User u = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions);
+                                await Task.Delay(2000);
+                                return new UserDTO() { Success = true, Message = string.Empty,   User=u };
+
+                            }
+                        case (HttpStatusCode.Unauthorized):
+                            {
+                            return new UserDTO() { Success = false, User = null, Message= Models.ErrorMessages.INVALID_LOGIN };
 
 
-                        }
+                            }
+
+                    }
 
                 }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                return new UserDTO() { Success = false, User = null, Message = Models.ErrorMessages.INVALID_LOGIN };
+
 
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            return new LoginDTO() { Success = false, User = null, Password = null, Message = Models.Messages.INVALID_LOGIN };
 
 
-        }
-
-
-    }
+       
+    } 
 }
+

@@ -25,7 +25,7 @@
                     <Label
                     FontSize="32"
                     Style="{DynamicResource welcome}"
-                    Text="Welcome To My Vintage Store" />
+                    Text="Welcome To The Vintage Store" />
                     <Label
                     FontFamily="OpenSansRegular"
                     FontSize="16"
@@ -85,18 +85,18 @@
                 BackgroundColor="{DynamicResource SecondaryColor}"
                 Command="{Binding LogInCommand}"
                 FontFamily="OpenSansBold"
-                IsEnabled="{Binding IsButtonEnabled}"
+              
                 Text="Enter"
                 TextColor="{DynamicResource PrimaryColor}" />
                 <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
 
-                    <Label
+                    <!--<Label
                     FontFamily="OpenSansRegular"
                     FontSize="16"
                     HorizontalOptions="StartAndExpand"
                     Text="Forgot Password?"
                     TextColor="{DynamicResource SecondaryColor}"
-                    VerticalOptions="EndAndExpand" />
+                    VerticalOptions="EndAndExpand" />-->
                     <Label
                     FontFamily="OpenSansRegular"
                     FontSize="16"

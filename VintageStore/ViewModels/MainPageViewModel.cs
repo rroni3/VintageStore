@@ -34,7 +34,7 @@ namespace VintageStore.ViewModels
         public string UserName
         {
             get => _userName;
-            set { if (_userName != value) { _userName = value; if (!ValidateUser()) { ShowUserNameError = true; UserErrorMessage = ErrorMessages.INVALID_USERNAME; } else { ShowUserNameError = false; UserErrorMessage = string.Empty; } OnPropertyChange(); OnPropertyChange(nameof(IsButtonEnabled)); } }
+            set { if (_userName != value) { _userName = value; if (!ValidateUser()) { ShowUserNameError = true; UserErrorMessage = ErrorMessages.INVALID_USERNAME; } else { ShowUserNameError = false; UserErrorMessage = string.Empty; } OnPropertyChange(); (LogInCommand as Command).ChangeCanExecute(); } }
         }
 
         public bool ShowUserNameError
@@ -65,7 +65,7 @@ namespace VintageStore.ViewModels
                         ShowPasswordError = false;
                     };
                     OnPropertyChange();
-                    OnPropertyChange(nameof(IsButtonEnabled));
+                    (LogInCommand as Command).ChangeCanExecute();
                 }
             }
         }
@@ -95,9 +95,6 @@ namespace VintageStore.ViewModels
         public MainPageViewModel(StoreService service)
         {
             _service = service;
-            UserName = string.Empty;
-            Password = string.Empty;
-
             LogInCommand = new Command(async () =>
             {
                 ShowLoginError = false;//הסתרת שגיאת לוגין
@@ -108,21 +105,21 @@ namespace VintageStore.ViewModels
                     var lvm = new LoadingPageViewModel() { IsBusy = true };
                     await AppShell.Current.Navigation.PushModalAsync(new LoadingPage(lvm));
                     #endregion
-                    //var user = await _service.LogInAsync(UserName, Password);
+                    var user = await _service.LoginAsync(UserName, Password);
                     await Task.Delay(1000);
                     lvm.IsBusy = false;
                     await Shell.Current.Navigation.PopModalAsync();
-                    //if (!user.Success)
-                    //{
-                    //    ShowLoginError = true;
-                    //    LoginErrorMessage = user.Message;
-                    //}
-                 //   else
-                 //   {
-                 //       await AppShell.Current.DisplayAlert("התחברת", "אישור להתחלת משחק", "אישור");
-                 ////       await SecureStorage.Default.SetAsync("LoggedUser", JsonSerializer.Serialize(user));
-                 //       await Shell.Current.GoToAsync("Game");
-                 //   }
+                    if (!user.Success)
+                    {
+                        ShowLoginError = true;
+                        LoginErrorMessage = user.Message;
+                    }
+                    else
+                    {
+                        await AppShell.Current.DisplayAlert("התחברת", "אישור להתחלת צפייה בחנות", "אישור");
+                        //       await SecureStorage.Default.SetAsync("LoggedUser", JsonSerializer.Serialize(user));
+                        await Shell.Current.GoToAsync("Store");
+                    }
 
 
 
@@ -136,13 +133,17 @@ namespace VintageStore.ViewModels
                 }
 
 
-            });
+
+            }, () => ValidatePage());
+
+            UserName = string.Empty;
+            Password = string.Empty;
         }
 
         #region פעולות עזר
         private bool ValidateUser()
         {
-            return !(string.IsNullOrEmpty(_userName) || _userName.Length < 3);
+            return !(string.IsNullOrEmpty(UserName) || UserName.Length < 3);
         }
         private bool ValidatePassWord()
         {
