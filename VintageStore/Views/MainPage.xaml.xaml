@@ -20,7 +20,7 @@
                 HorizontalOptions="Center"
                 Source="logo.png"
                 WidthRequest="200" />
-
+                <!--הודעת פתיחה ושגיאת טופס-->
                 <StackLayout Margin="0,80">
                     <Label
                     FontSize="32"
@@ -36,7 +36,8 @@
                     Style="{DynamicResource error}"
                     Text="{Binding LoginErrorMessage}" />
                 </StackLayout>
-
+<!--שם משתמש-->
+                
                 <StackLayout>
                     <Label
                     FontFamily="OpenSansRegular"

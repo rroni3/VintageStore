@@ -39,12 +39,14 @@ namespace VintageStore.ViewModels
 
         public bool ShowUserNameError
         {
-            get => _showUserNameError; set
+            get => _showUserNameError;
+            set
             {
                 if (_showUserNameError != value)
                 {
-                    _showUserNameError = value; OnPropertyChange();
+                    _showUserNameError = value; 
                 }
+                OnPropertyChange();
             }
         }
         public string Password
@@ -70,13 +72,13 @@ namespace VintageStore.ViewModels
             }
         }
 
-        public string UserErrorMessage { get => _userErrorMessage; set { if (_userErrorMessage != value) { _userErrorMessage = value; OnPropertyChange(); } } }
+        public string UserErrorMessage { get => _userErrorMessage; set { if (_userErrorMessage != value) { _userErrorMessage = value;  } OnPropertyChange();} }
 
 
         public bool ShowPasswordError { get => _showPasswordError; set { if (_showPasswordError != value) { _showPasswordError = value; OnPropertyChange(); } } }
         public string PasswordErrorMessage { get => _passwordErrorMessage; set { if (_passwordErrorMessage != value) { _passwordErrorMessage = value; OnPropertyChange(); } } }
 
-        public bool ShowLoginError { get => _showLoginError; set { if (_showLoginError != value) { _showLoginError = value; OnPropertyChange(); } } }
+        public bool ShowLoginError { get => _showLoginError; set { if (_showLoginError != value) { _showLoginError = value;  }OnPropertyChange(); } }
         public string LoginErrorMessage { get => _loginErrorMessage; set { if (_loginErrorMessage != value) { _loginErrorMessage = value; OnPropertyChange(); } } }
 
         //האם כפתור התחבר יהיה זמין
