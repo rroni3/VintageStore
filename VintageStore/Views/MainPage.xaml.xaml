@@ -5,7 +5,7 @@
              Title="Main Page"
              xmlns:viewmodels="clr-namespace:VintageStore.ViewModels"
              x:DataType="viewmodels:MainPageViewModel"
-             BackgroundColor="{DynamicResource PrimaryColor}"
+            
              FlowDirection="RightToLeft">
     <ScrollView>
 
@@ -24,16 +24,16 @@
                 <StackLayout Margin="0,80">
                     <Label
                     FontSize="32"
-                    Style="{DynamicResource welcome}"
+                   
                     Text="Welcome To The Vintage Store" />
                     <Label
                     FontFamily="OpenSansRegular"
                     FontSize="16"
                     Text="Please Login To Continue"
-                    TextColor="{DynamicResource SecondaryColor}" />
+           />
                     <Label
                     IsVisible="{Binding ShowLoginError}"
-                    Style="{DynamicResource error}"
+                   
                     Text="{Binding LoginErrorMessage}" />
                 </StackLayout>
 <!--שם משתמש-->
@@ -43,17 +43,17 @@
                     FontFamily="OpenSansRegular"
                     FontSize="16"
                     Text="Username"
-                    TextColor="{DynamicResource SecondaryColor}" />
+                    />
                     <Grid Margin="0,5" RowDefinitions="auto,auto">
-                        <Border Style="{DynamicResource loginBorder}" />
+                        <Border  />
                         <Entry
                         Placeholder="Enter Username"
-                        Style="{DynamicResource loginEntry}"
+                        
                         Text="{Binding UserName}" />
                         <Label
                         Grid.Row="1"
                         IsVisible="{Binding ShowUserNameError}"
-                        Style="{DynamicResource error}"
+                        
                         Text="{Binding UserErrorMessage}" />
                     </Grid>
 
@@ -61,9 +61,9 @@
                     FontFamily="OpenSansRegular"
                     FontSize="16"
                     Text="Password"
-                    TextColor="{DynamicResource SecondaryColor}" />
+                   />
                     <Grid Margin="0,5" RowDefinitions="auto,auto">
-                        <Border Style="{DynamicResource loginBorder}" />
+                        <Border  />
                         <Entry
                         Margin="5,0"
                         BackgroundColor="Transparent"
@@ -75,7 +75,7 @@
                         <Label
                         Grid.Row="1"
                         IsVisible="{Binding ShowPasswordError}"
-                        Style="{DynamicResource error}"
+                      
                         Text="{Binding PasswordErrorMessage}" />
 
                     </Grid>
@@ -83,12 +83,12 @@
 
                 <Button
                 Margin="0,15"
-                BackgroundColor="{DynamicResource SecondaryColor}"
+         
                 Command="{Binding LogInCommand}"
                 FontFamily="OpenSansBold"
               
                 Text="Enter"
-                TextColor="{DynamicResource PrimaryColor}" />
+              />
                 <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
 
                     <!--<Label
@@ -103,7 +103,7 @@
                     FontSize="16"
                     HorizontalOptions="EndAndExpand"
                     Text="Regiter"
-                    TextColor="{DynamicResource SecondaryColor}"
+                 
                     VerticalOptions="EndAndExpand" />
                 </StackLayout>
             </StackLayout>

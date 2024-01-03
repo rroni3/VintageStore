@@ -23,7 +23,7 @@ namespace VintageStore.ViewModels
         private string _passwordErrorMessage;
         private bool _showLoginError;//
         private string _loginErrorMessage;
-        private StoreService _storeService;
+       
         #endregion
 
         #region Service component
@@ -72,7 +72,8 @@ namespace VintageStore.ViewModels
             }
         }
 
-        public string UserErrorMessage { get => _userErrorMessage; set { if (_userErrorMessage != value) { _userErrorMessage = value;  } OnPropertyChange();} }
+        public string UserErrorMessage { get => _userErrorMessage;
+            set { if (_userErrorMessage != value) { _userErrorMessage = value;  } OnPropertyChange();} }
 
 
         public bool ShowPasswordError { get => _showPasswordError; set { if (_showPasswordError != value) { _showPasswordError = value; OnPropertyChange(); } } }
@@ -140,6 +141,9 @@ namespace VintageStore.ViewModels
 
             UserName = string.Empty;
             Password = string.Empty;
+            ShowLoginError = false;
+            ShowPasswordError = false;   
+            ShowUserNameError =false;   
         }
 
         #region פעולות עזר
