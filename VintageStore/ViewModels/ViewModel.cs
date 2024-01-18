@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace VintageStore.ViewModels
 {
-    public class ViewModel
+    public class ViewModel: INotifyPropertyChanged
     {
         private bool _isBusy;
         public bool IsBusy { get => _isBusy; set { _isBusy = value; OnPropertyChange(); } }

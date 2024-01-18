@@ -98,11 +98,12 @@
                     Text="Forgot Password?"
                     TextColor="{DynamicResource SecondaryColor}"
                     VerticalOptions="EndAndExpand" />-->
-                    <Label
+                    <Button
                     FontFamily="OpenSansRegular"
                     FontSize="16"
                     HorizontalOptions="EndAndExpand"
                     Text="Regiter"
+                    Command="{Binding RegisterPageCommand}"
                  
                     VerticalOptions="EndAndExpand" />
                 </StackLayout>

@@ -87,6 +87,10 @@ namespace VintageStore.ViewModels
         #endregion
 
         #region Commands
+
+        public ICommand RegisterPageCommand { get; protected set; }
+       
+
         public ICommand LogInCommand { get; protected set; }
         #endregion
 
@@ -98,6 +102,12 @@ namespace VintageStore.ViewModels
         public MainPageViewModel(StoreService service)
         {
             _service = service;
+            RegisterPageCommand = new Command(async () =>
+            {
+                await Shell.Current.GoToAsync("Register");
+            
+            });
+            
             LogInCommand = new Command(async () =>
             {
                 ShowLoginError = false;//הסתרת שגיאת לוגין
@@ -161,5 +171,7 @@ namespace VintageStore.ViewModels
             return ValidateUser() && ValidatePassWord();
         }
         #endregion
+
+        
     }
 }
