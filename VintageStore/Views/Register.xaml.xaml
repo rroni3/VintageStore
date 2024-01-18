@@ -13,6 +13,7 @@
 FontFamily="OpenSansRegular"
 FontSize="16"
 Text="Username"
+            
 />
             <Grid Margin="0,5" RowDefinitions="auto,auto">
                 <Border  />
