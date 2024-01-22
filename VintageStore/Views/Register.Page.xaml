@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="VintageStore.Views.RegisterPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Register">
+    <VerticalStackLayout>
+        <Button
+            Command="{Binding LogInCommand}"
+            FontFamily="OpenSansRegular"
+            FontSize="16"
+            HorizontalOptions="EndAndExpand"
+            Text="Back To Login"
+            VerticalOptions="EndAndExpand" />
+        <Label
+            HorizontalOptions="Center"
+            Text=" Please Register To Continue"
+            VerticalOptions="Center" />
+
+        <Label
+            FontFamily="OpenSansRegular"
+            FontSize="16"
+            Text="Username" />
+        <Grid Margin="0,5" RowDefinitions="auto,auto">
+            <Border />
+            <Entry Placeholder="Enter Username" Text="{Binding UserName}" />
+
+        </Grid>
+        <Label
+            FontFamily="OpenSansRegular"
+            FontSize="16"
+            Text="Password" />
+        <Grid Margin="0,5" RowDefinitions="auto,auto">
+            <Border />
+            <Entry
+                Margin="5,0"
+                BackgroundColor="Transparent"
+                IsPassword="True"
+                Placeholder="Enter Password"
+                PlaceholderColor="Gray"
+                Text="{Binding Password}"
+                TextColor="Black" />
+        </Grid>
+        <Button
+            Margin="0,15"
+            Command="{Binding LoginPageCommand}"
+            FontFamily="OpenSansBold"
+            Text="Enter" />
+    </VerticalStackLayout>
+
+</ContentPage>

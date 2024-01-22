@@ -71,8 +71,45 @@ namespace VintageStore.Services
 
             }
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                 
-       
+        public async Task<UserDTO> RegisterAsync(string UserName, string Password)
+        {
+            try
+            {
+                var user = new LoginDTO() { Username = UserName, Password = Password };
+                var jsonContent = JsonSerializer.Serialize(user, _serializerOptions);
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync($"{URL}Login", content);
+
+                switch (response.StatusCode)
+                {
+                    case (HttpStatusCode.OK):
+                        {
+                            jsonContent = await response.Content.ReadAsStringAsync();
+                            User u = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions);
+                            await Task.Delay(2000);
+                            return new UserDTO() { Success = true, Message = string.Empty, User = u };
+
+                        }
+                    case (HttpStatusCode.Unauthorized):
+                        {
+                            return new UserDTO() { Success = false, User = null, Message = Models.ErrorMessages.INVALID_LOGIN };
+
+
+                        }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return new UserDTO() { Success = false, User = null, Message = Models.ErrorMessages.INVALID_LOGIN };
+
+
+        }
+
+
     } 
 }
 

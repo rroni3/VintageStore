@@ -23,7 +23,7 @@ namespace VintageStore
             builder.Services.AddTransient<LoadingPage>();
             builder.Services.AddSingleton<StorePage>();
             builder.Services.AddSingleton<StorePageViewModel>();
-            builder.Services.AddSingleton<Register>();
+            builder.Services.AddSingleton<RegisterPageViewModel>();
 
 #if DEBUG
             builder.Logging.AddDebug();

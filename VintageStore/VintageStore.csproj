@@ -59,6 +59,9 @@
 	  <Compile Update="Views\MainPage.xaml.xaml.cs">
 	    <DependentUpon>MainPage.xaml.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\Register.Page.xaml.cs">
+	    <DependentUpon>Register.Page.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -68,7 +71,7 @@
 	  <MauiXaml Update="Views\MainPage.xaml.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Register.xaml.xaml">
+	  <MauiXaml Update="Views\Register.Page.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\StorePage.xaml.xaml">
