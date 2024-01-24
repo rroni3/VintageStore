@@ -3,10 +3,12 @@
     x:Class="VintageStore.Views.RegisterPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Register">
+    xmlns:vm="clr-namespace:VintageStore.ViewModels"
+    Title="Register"
+    x:DataType="vm:RegisterPageViewModel">
     <VerticalStackLayout>
         <Button
-            Command="{Binding LogInCommand}"
+            Command="{Binding BackToLoginCommand}"
             FontFamily="OpenSansRegular"
             FontSize="16"
             HorizontalOptions="EndAndExpand"
@@ -21,8 +23,9 @@
             FontFamily="OpenSansRegular"
             FontSize="16"
             Text="Username" />
+
         <Grid Margin="0,5" RowDefinitions="auto,auto">
-            <Border />
+
             <Entry Placeholder="Enter Username" Text="{Binding UserName}" />
 
         </Grid>
@@ -31,7 +34,7 @@
             FontSize="16"
             Text="Password" />
         <Grid Margin="0,5" RowDefinitions="auto,auto">
-            <Border />
+
             <Entry
                 Margin="5,0"
                 BackgroundColor="Transparent"
@@ -43,7 +46,7 @@
         </Grid>
         <Button
             Margin="0,15"
-            Command="{Binding LoginPageCommand}"
+            Command="{Binding RegisterCommand}"
             FontFamily="OpenSansBold"
             Text="Enter" />
     </VerticalStackLayout>

@@ -6,8 +6,8 @@
              Title="Vintage Store"
              x:DataType="viewmodels:StorePageViewModel"
              FlowDirection="RightToLeft">
-    <Shell.BackButtonBehavior>
-        <BackButtonBehavior IsVisible="False" />
+    <!--<Shell.BackButtonBehavior>-->
+        <!--<BackButtonBehavior IsVisible="False" />
     </Shell.BackButtonBehavior>
     <VerticalStackLayout>
         <Label
@@ -29,8 +29,13 @@
             <Image.GestureRecognizers>
                 <TapGestureRecognizer Buttons="Primary" Command="{Binding ChangePhoto}" />
             </Image.GestureRecognizers>
-        </Image>
+        </Image>-->
 
-        <Button Command="{Binding TakePictureCommand}" Text="צלם תמונה" />
+        
+    <!--</VerticalStackLayout>-->
+    <VerticalStackLayout>
+
+
+        <Label FontSize="32" Text="All Clothes" />
     </VerticalStackLayout>
 </ContentPage>

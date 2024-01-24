@@ -71,11 +71,11 @@ namespace VintageStore.Services
 
             }
 
-        public async Task<UserDTO> RegisterAsync(string UserName, string Password)
+        public async Task<UserDTO> RegisterAsync(User u)
         {
             try
             {
-                var user = new LoginDTO() { Username = UserName, Password = Password };
+                var user = new UserDTO() { User=u };
                 var jsonContent = JsonSerializer.Serialize(user, _serializerOptions);
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
                 var response = await _httpClient.PostAsync($"{URL}Login", content);

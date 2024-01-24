@@ -20,16 +20,17 @@ namespace VintageStore.ViewModels
         private string _passwordErrorMessage;
         private bool _showLoginError;//
         private string _loginErrorMessage;
+        private StoreService service;
 
-        public ICommand RegisterPageCommand { get; protected set; }
+        public ICommand RegisterCommand { get; protected set; }
 
 
-        public ICommand LogInCommand { get; protected set; }
+        public ICommand BackToLoginCommand { get; protected set; }
 
         public string UserName
         {
             get => _userName;
-            set { if (_userName != value) { _userName = value; if (!ValidateUser()) { ShowUserNameError = true; UserErrorMessage = ErrorMessages.INVALID_USERNAME; } else { ShowUserNameError = false; UserErrorMessage = string.Empty; } OnPropertyChange(); (RegisterPageCommand as Command).ChangeCanExecute(); } }
+            set { if (_userName != value) { _userName = value; if (!ValidateUser()) { ShowUserNameError = true; UserErrorMessage = ErrorMessages.INVALID_USERNAME; } else { ShowUserNameError = false; UserErrorMessage = string.Empty; } OnPropertyChange(); (RegisterCommand as Command).ChangeCanExecute(); } }
         }
 
         public bool ShowUserNameError
@@ -62,7 +63,7 @@ namespace VintageStore.ViewModels
                         ShowPasswordError = false;
                     };
                     OnPropertyChange();
-                    (RegisterPageCommand as Command).ChangeCanExecute();
+                    (RegisterCommand as Command).ChangeCanExecute();
                 }
             }
         }
@@ -82,13 +83,22 @@ namespace VintageStore.ViewModels
 
         public RegisterPageViewModel (StoreService storeService)
         {
-            LogInCommand = new Command(async () =>
+            service = storeService;
+            BackToLoginCommand = new Command(async () =>
             {
                 await Shell.Current.GoToAsync("Login");
             });
+            RegisterCommand = new Command(Register);
         }
 
-
+        private void Register()
+        {
+            //ToDo
+            User u= new User() { Email = "ToDo", FirstName= "todo"//ToDO
+                                                                  };
+            service.RegisterAsync(u);
+            
+        }
 
         private bool ValidateUser()
         {

@@ -24,6 +24,7 @@ namespace VintageStore
             builder.Services.AddSingleton<StorePage>();
             builder.Services.AddSingleton<StorePageViewModel>();
             builder.Services.AddSingleton<RegisterPageViewModel>();
+            builder.Services.AddSingleton<RegisterPage>();
 
 #if DEBUG
             builder.Logging.AddDebug();
