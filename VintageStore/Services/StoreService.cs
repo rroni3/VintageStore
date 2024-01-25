@@ -85,7 +85,7 @@ namespace VintageStore.Services
                     case (HttpStatusCode.OK):
                         {
                             jsonContent = await response.Content.ReadAsStringAsync();
-                            User u = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions);
+                            User us = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions);
                             await Task.Delay(2000);
                             return new UserDTO() { Success = true, Message = string.Empty, User = u };
 

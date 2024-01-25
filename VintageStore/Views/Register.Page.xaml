@@ -44,6 +44,26 @@
                 Text="{Binding Password}"
                 TextColor="Black" />
         </Grid>
+        <Label
+    FontFamily="OpenSansRegular"
+    FontSize="16"
+    Text="First Name" />
+
+        <Grid Margin="0,5" RowDefinitions="auto,auto">
+
+            <Entry Placeholder="Enter First Name" Text="{Binding FirstName}" />
+
+        </Grid>
+        <Label
+    FontFamily="OpenSansRegular"
+    FontSize="16"
+    Text="ID" />
+
+        <Grid Margin="0,5" RowDefinitions="auto,auto">
+
+            <Entry Placeholder="Enter ID" Text="{Binding Id}" />
+
+        </Grid>
         <Button
             Margin="0,15"
             Command="{Binding RegisterCommand}"

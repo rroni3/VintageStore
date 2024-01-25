@@ -15,6 +15,8 @@ namespace VintageStore.ViewModels
         private bool _showUserNameError;//האם להציג שדה שגיאת שם משתמש
         private string _userErrorMessage;//תאור שגיאת שם משתמש
         private string _password;//סיסמה
+        private string _FirstName;
+        private int _Id;
 
         private bool _showPasswordError;//האם להציג שגיאת סיסמה
         private string _passwordErrorMessage;
@@ -30,7 +32,29 @@ namespace VintageStore.ViewModels
         public string UserName
         {
             get => _userName;
-            set { if (_userName != value) { _userName = value; if (!ValidateUser()) { ShowUserNameError = true; UserErrorMessage = ErrorMessages.INVALID_USERNAME; } else { ShowUserNameError = false; UserErrorMessage = string.Empty; } OnPropertyChange(); (RegisterCommand as Command).ChangeCanExecute(); } }
+
+            set => _userName = value;
+            //set { if (_userName != value)
+            //    { _userName = value;
+            //        if (!ValidateUser())
+            //        { ShowUserNameError = true;
+            //            UserErrorMessage = ErrorMessages.INVALID_USERNAME; }
+            //        else { ShowUserNameError = false; 
+            //            UserErrorMessage = string.Empty; } 
+            //        OnPropertyChange(); 
+            //        (RegisterCommand as Command).ChangeCanExecute(); } }
+        }
+        public int Id
+        {
+            get => _Id;
+
+            set => _Id = value;
+        }
+
+        public string FirstName
+        {
+            get => _FirstName;
+            set => _FirstName = value;
         }
 
         public bool ShowUserNameError
@@ -94,7 +118,7 @@ namespace VintageStore.ViewModels
         private void Register()
         {
             //ToDo
-            User u= new User() { Email = "ToDo", FirstName= "todo"//ToDO
+            User u= new User() { Email = "ToDo", FirstName= "todo", LastName="todo", Id=123, UserPswd="e"
                                                                   };
             service.RegisterAsync(u);
             
