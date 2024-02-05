@@ -17,6 +17,7 @@ namespace VintageStore.Models
         public string LastName { get; set; }
 
         public string UserPswd { get; set; }
+        public string UserName { get; set; }
 
     }
 }

@@ -45,9 +45,9 @@
                 TextColor="Black" />
         </Grid>
         <Label
-    FontFamily="OpenSansRegular"
-    FontSize="16"
-    Text="First Name" />
+            FontFamily="OpenSansRegular"
+            FontSize="16"
+            Text="First Name" />
 
         <Grid Margin="0,5" RowDefinitions="auto,auto">
 
@@ -55,13 +55,33 @@
 
         </Grid>
         <Label
-    FontFamily="OpenSansRegular"
-    FontSize="16"
-    Text="ID" />
+            FontFamily="OpenSansRegular"
+            FontSize="16"
+            Text="ID" />
 
         <Grid Margin="0,5" RowDefinitions="auto,auto">
 
             <Entry Placeholder="Enter ID" Text="{Binding Id}" />
+
+        </Grid>
+        <Label
+            FontFamily="OpenSansRegular"
+            FontSize="16"
+            Text="Last Name" />
+
+        <Grid Margin="0,5" RowDefinitions="auto,auto">
+
+            <Entry Placeholder="Enter Last Name" Text="{Binding LastName}" />
+
+        </Grid>
+        <Label
+            FontFamily="OpenSansRegular"
+            FontSize="16"
+            Text="Email" />
+
+        <Grid Margin="0,5" RowDefinitions="auto,auto">
+
+            <Entry Placeholder="Enter Email" Text="{Binding Email}" />
 
         </Grid>
         <Button

@@ -16,6 +16,8 @@ namespace VintageStore.ViewModels
         private string _userErrorMessage;//תאור שגיאת שם משתמש
         private string _password;//סיסמה
         private string _FirstName;
+        private string _LastName;
+        private string _Email;
         private int _Id;
 
         private bool _showPasswordError;//האם להציג שגיאת סיסמה
@@ -55,6 +57,16 @@ namespace VintageStore.ViewModels
         {
             get => _FirstName;
             set => _FirstName = value;
+        }
+        public string LastName
+        {
+            get => _LastName;
+            set => _LastName = value;
+        }
+        public string Email
+        {
+            get => _Email;
+            set => _Email = value;
         }
 
         public bool ShowUserNameError
@@ -108,18 +120,30 @@ namespace VintageStore.ViewModels
         public RegisterPageViewModel (StoreService storeService)
         {
             service = storeService;
+            RegisterCommand=new Command(async=>
+            {
+                //try
+                //{
+                //    var response = await service.RegisterAsync(new User() { });
+                //}
+
+
+            }
+            
+            );
             BackToLoginCommand = new Command(async () =>
             {
                 await Shell.Current.GoToAsync("Login");
             });
             RegisterCommand = new Command(Register);
         }
-
+        
         private void Register()
         {
+            
             //ToDo
-            User u= new User() { Email = "ToDo", FirstName= "todo", LastName="todo", Id=123, UserPswd="e"
-                                                                  };
+            User u= new User() { Email = "ToDo", FirstName= "todo", LastName="todo", Id=123, UserPswd="e", UserName = "e"
+            };
             service.RegisterAsync(u);
             
         }
