@@ -71,14 +71,14 @@ namespace VintageStore.Services
 
             }
 
-        public async Task<UserDTO> RegisterAsync(User u)
+        public async Task<bool> RegisterAsync(User u)
         {
             try
             {
-                var user = new UserDTO() { User=u };
+                var user = u;
                 var jsonContent = JsonSerializer.Serialize(user, _serializerOptions);
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-                var response = await _httpClient.PostAsync($"{URL}Login", content);
+                var response = await _httpClient.PostAsync($"{URL}Register", content);
 
                 switch (response.StatusCode)
                 {
@@ -87,12 +87,12 @@ namespace VintageStore.Services
                             jsonContent = await response.Content.ReadAsStringAsync();
                             User us = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions);
                             await Task.Delay(2000);
-                            return new UserDTO() { Success = true, Message = string.Empty, User = u };
+                            return true;
 
                         }
                     case (HttpStatusCode.Unauthorized):
                         {
-                            return new UserDTO() { Success = false, User = null, Message = Models.ErrorMessages.INVALID_LOGIN };
+                            return false;
 
 
                         }
@@ -104,7 +104,7 @@ namespace VintageStore.Services
             {
                 Console.WriteLine(ex.Message);
             }
-            return new UserDTO() { Success = false, User = null, Message = Models.ErrorMessages.INVALID_LOGIN };
+            return false;
 
 
         }

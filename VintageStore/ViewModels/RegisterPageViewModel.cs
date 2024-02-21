@@ -35,7 +35,7 @@ namespace VintageStore.ViewModels
         {
             get => _userName;
 
-            set => _userName = value;
+            set { _userName = value; ((Command)RegisterCommand).ChangeCanExecute(); }
             //set { if (_userName != value)
             //    { _userName = value;
             //        if (!ValidateUser())
@@ -56,18 +56,18 @@ namespace VintageStore.ViewModels
         public string FirstName
         {
             get => _FirstName;
-            set => _FirstName = value;
+            set { _FirstName = value;((Command)RegisterCommand).ChangeCanExecute(); }
         }
         public string LastName
         {
             get => _LastName;
-            set => _LastName = value;
-        }
+            set { _LastName = value; ((Command)RegisterCommand).ChangeCanExecute(); }
+            }
         public string Email
         {
             get => _Email;
-            set => _Email = value;
-        }
+            set { _Email = value; ((Command)RegisterCommand).ChangeCanExecute(); }
+            }
 
         public bool ShowUserNameError
         {
@@ -135,16 +135,21 @@ namespace VintageStore.ViewModels
             {
                 await Shell.Current.GoToAsync("Login");
             });
-            RegisterCommand = new Command(Register);
+            RegisterCommand = new Command(Register,EnableRegister);
         }
-        
-        private void Register()
+
+        private bool EnableRegister()
+        {
+        return !(string.IsNullOrEmpty(FirstName)||string.IsNullOrEmpty(LastName)||string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(UserName));
+        }
+
+        private async void Register()
         {
             
             //ToDo
-            User u= new User() { Email = "ToDo", FirstName= "todo", LastName="todo", Id=123, UserPswd="e", UserName = "e"
-            };
-            service.RegisterAsync(u);
+            User u= new User() { Email = Email, FirstName= FirstName, LastName=LastName,  UserPswd=Password, UserName = UserName };
+
+          bool result= await service.RegisterAsync(u);
             
         }
 

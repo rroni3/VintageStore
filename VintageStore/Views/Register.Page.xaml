@@ -54,16 +54,7 @@
             <Entry Placeholder="Enter First Name" Text="{Binding FirstName}" />
 
         </Grid>
-        <Label
-            FontFamily="OpenSansRegular"
-            FontSize="16"
-            Text="ID" />
-
-        <Grid Margin="0,5" RowDefinitions="auto,auto">
-
-            <Entry Placeholder="Enter ID" Text="{Binding Id}" />
-
-        </Grid>
+      
         <Label
             FontFamily="OpenSansRegular"
             FontSize="16"
