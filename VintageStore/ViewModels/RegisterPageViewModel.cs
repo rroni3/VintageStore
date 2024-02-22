@@ -150,7 +150,10 @@ namespace VintageStore.ViewModels
             User u= new User() { Email = Email, FirstName= FirstName, LastName=LastName,  UserPswd=Password, UserName = UserName };
 
           bool result= await service.RegisterAsync(u);
-            
+            if(result==true)
+            {
+                await AppShell.Current.GoToAsync("HomePage");
+            }
         }
 
         private bool ValidateUser()
