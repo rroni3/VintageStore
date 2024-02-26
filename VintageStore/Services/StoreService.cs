@@ -9,6 +9,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using VintageStore.Models;
 using Microsoft.Extensions.Logging;
+using static System.Net.WebRequestMethods;
 
 namespace VintageStore.Services
 {
@@ -16,8 +17,8 @@ namespace VintageStore.Services
     {
         readonly HttpClient _httpClient;
         readonly JsonSerializerOptions _serializerOptions;
-        const string URL = @"https://ldcxfb5h-7294.uks1.devtunnels.ms/api/storeapi/";
-        const string IMAGE_URL = @"https://ldcxfb5h-7294.uks1.devtunnels.ms/";
+        static string URL = DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5286/Api/StoreApi/" : "http://localhost:5286/Api/StoreApi/";
+  static string IMAGE_URL = DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5286" : "http://localhost:5286";
 
         public StoreService()
         {

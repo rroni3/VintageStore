@@ -4,7 +4,7 @@
              x:Class="VintageStore.Views.CollectionViewDemo"
              Title="CollectionViewDemo">
     <CollectionView ItemsLayout="VerticalGrid, 3" SelectionMode="Single">
-        <CollectionView.ItemsSource>
+        <!--<CollectionView.ItemsSource>
             
             <x:Array Type="{x:Type x:String}"
                      <x:String>Item 1 </x:String>
@@ -17,6 +17,6 @@
                     <Label Text="{Binding.}" HorizontalOptions="Center"/>
                 </VerticalStackLayout>
             </DataTemplate>
-        </CollectionView.ItemTemplate>
+        </CollectionView.ItemTemplate> -->
     </CollectionView>
 </ContentPage>

@@ -1,41 +1,34 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VintageStore.Views.HomePage"
-             Title="HomePage">
+<ContentPage
+    x:Class="VintageStore.Views.HomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="HomePage">
     <VerticalStackLayout>
-        <Label 
+        <Label
+            HorizontalOptions="Center"
             Text="Welcome to the store"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-
-        <Label 
-     Text="what are you intrested to buy?"
-     VerticalOptions="Center" 
-     HorizontalOptions="Center" />
-        <Grid>
-
-            <Button
-            Command="{Binding GoToShirtsCommand}"
-    FontFamily="OpenSansRegular"
-   FontSize="16"
-   HorizontalOptions="EndAndExpand"
-   Text="Go To shirts"
-   VerticalOptions="EndAndExpand" />
-            <Button
-Command="{Binding GoToPantsCommand}"
-FontFamily="OpenSansRegular"
-FontSize="16"
-HorizontalOptions="EndAndExpand"
-Text="Go To pants"
-VerticalOptions="EndAndExpand" />
-            <Button
-Command="{Binding GoToHatsCommand}"
-FontFamily="OpenSansRegular"
-FontSize="16"
-HorizontalOptions="EndAndExpand"
-Text="Go To hats"
-VerticalOptions="EndAndExpand" />
-            <Grid/>
+            VerticalOptions="Center" />
+        <CollectionView x:Name="CollectionView" ItemsLayout="VerticalGrid, 3" SelectionMode="Single">
+            
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width=".2*"/>
+                                <ColumnDefinition Width=".8*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding Photo}" Grid.Column="0" Grid.Row="0"/>
+                            <VerticalStackLayout Grid.Column="1" Grid.Row="0" Padding="5" VerticalOptions="Center">
+                                <Label Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold"/>
+                                <!--<Label Text="{Binding IsCode}" FontAttributes="Italic"/>-->
+                            </VerticalStackLayout> 
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+       
     </VerticalStackLayout>
 </ContentPage>
