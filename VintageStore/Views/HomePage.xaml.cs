@@ -11,20 +11,20 @@ public partial class HomePage : ContentPage
     {
         this.BindingContext = vm;
         InitializeComponent();
-        CollectionView.ItemsSource=GetClothes();
+        
 
     }
 
-    private List<Clothes> GetClothes()
-    {
-        return new List<Clothes>
-        {
-            new Clothes { Id = 1, Name = "yali top", Category = "shirt", Size = "s", Color = "baby blue", photo = "dotnet_bot.svg" },
-            new Clothes { Id = 2, Name = "Ella hat", Category = "hats", Size = "s", Color = "purple", photo = "" },
-            new Clothes { Id = 3, Name = "Noa pants", Category = "pants" ,Size = "s", Color = "green", photo = "" }
-        };
+    //private List<Jewelry> GetClothes()
+    //{
+    //    return new List<Jewelry>
+    //    {
+    //        new Jewelry { Id = 1, Name = "yali top", Category = "shirt", Size = "s", Color = "baby blue", photo = "yali_top.svg" },
+    //        new Jewelry { Id = 2, Name = "Ella hat", Category = "jewlery", Size = "unisex", Color = "gold", photo = "hand_jewelry.jpg" },
+    //        new Jewelry { Id = 3, Name = "Noa pants", Category = "pants" ,Size = "s", Color = "green", photo = "neclace.jpg" }
+    //    };
 
 
-    }
+    //}
 
 }

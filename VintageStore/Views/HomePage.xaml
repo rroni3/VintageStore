@@ -3,32 +3,48 @@
     x:Class="VintageStore.Views.HomePage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:VintageStore.Models"
+    xmlns:vm="clr-namespace:VintageStore.ViewModels"
+    x:DataType="vm:HomePageViewModel"
     Title="HomePage">
     <VerticalStackLayout>
         <Label
             HorizontalOptions="Center"
             Text="Welcome to the store"
             VerticalOptions="Center" />
-        <CollectionView x:Name="CollectionView" ItemsLayout="VerticalGrid, 3" SelectionMode="Single">
-            
+        <CollectionView ItemsSource="{Binding Jewleries}"
+            x:Name="CollectionView"
+            ItemsLayout="VerticalGrid, 3"
+            SelectionMode="Single">
+
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Jewelry">
                     <Frame Margin="10">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width=".2*"/>
-                                <ColumnDefinition Width=".8*"/>
+                                <ColumnDefinition Width=".2*" />
+                                <ColumnDefinition Width=".8*" />
                             </Grid.ColumnDefinitions>
-                            <Image Source="{Binding Photo}" Grid.Column="0" Grid.Row="0"/>
-                            <VerticalStackLayout Grid.Column="1" Grid.Row="0" Padding="5" VerticalOptions="Center">
-                                <Label Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold"/>
+                            <Image
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Source="{Binding Photo}" />
+                            <VerticalStackLayout
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Padding="5"
+                                VerticalOptions="Center">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Medium"
+                                    Text="{Binding Name}" />
                                 <!--<Label Text="{Binding IsCode}" FontAttributes="Italic"/>-->
-                            </VerticalStackLayout> 
+                            </VerticalStackLayout>
                         </Grid>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-       
+
     </VerticalStackLayout>
 </ContentPage>
