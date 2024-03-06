@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace VintageStore.Models
 {
-    public class Jewelry
+    public class Category
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public Category Category { get; set; }
-        public string Photo { get; set; }
     }
 }

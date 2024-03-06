@@ -109,7 +109,13 @@ namespace VintageStore.Services
 
 
         }
-
+        //add Get returns List of Jewelry from server
+        public async Task<List<Jewelry>> GetJewlsAsync()
+        {
+             List<Jewelry> jewelries = new List<Jewelry>();
+            jewelries.Add(new Jewelry() { Id = 1, Category = new Category() { Id=1, Name="necklace"}, Name = "y", Photo = "hand_jewlery.jpg" });
+            return jewelries;
+        }
 
     } 
 }

@@ -5,46 +5,107 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:models="clr-namespace:VintageStore.Models"
     xmlns:vm="clr-namespace:VintageStore.ViewModels"
-    x:DataType="vm:HomePageViewModel"
-    Title="HomePage">
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to the store"
-            VerticalOptions="Center" />
-        <CollectionView ItemsSource="{Binding Jewleries}"
-            x:Name="CollectionView"
-            ItemsLayout="VerticalGrid, 3"
-            SelectionMode="Single">
+    Title="HomePage"
+    x:DataType="vm:HomePageViewModel">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!--  colors  -->
+            <Color x:Key="eggPlant">#7426f0</Color>
+            <Style x:Key="filterStyle" TargetType="Button">
+                <Setter Property="FontFamily" Value="OpenSansBold" />
+                <Setter Property="HeightRequest" Value="70" />
+                <Setter Property="WidthRequest" Value="70" />
+                <Setter Property="Margin" Value="15" />
+                <Setter Property="FontAutoScalingEnabled" Value="True" />
+                <Setter Property="FontSize" Value="10" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView Margin="10">
+        <Grid
+            ColumnDefinitions="*,*,*,*,*"
+            ColumnSpacing="2"
+            RowDefinitions="*,*,*">
+            <Label
+                Grid.Row="0"
+                Grid.ColumnSpan="15"
+                HorizontalOptions="Center"
+                Text="Welcome to the store"
+                TextColor="{StaticResource eggPlant}"
+                VerticalOptions="Center" />
+            <Button
+                Grid.Row="1"
+                Grid.Column="0"
+                Command="{Binding FilterCommand}"
+                CommandParameter="4"
+                Style="{StaticResource filterStyle}"
+                Text="Ring Filter" />
+            <Button
+                Grid.Row="1"
+                Grid.Column="1"
+                Command="{Binding FilterCommand}"
+                CommandParameter="2"
+                Style="{StaticResource filterStyle}"
+                Text="Bracelet Filter" />
+            <Button
+                Grid.Row="1"
+                Grid.Column="2"
+                Command="{Binding FilterCommand}"
+                CommandParameter="3"
+                Style="{StaticResource filterStyle}"
+                Text="Earring Filter" />
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Jewelry">
-                    <Frame Margin="10">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width=".2*" />
-                                <ColumnDefinition Width=".8*" />
-                            </Grid.ColumnDefinitions>
-                            <Image
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                Source="{Binding Photo}" />
-                            <VerticalStackLayout
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                Padding="5"
-                                VerticalOptions="Center">
-                                <Label
-                                    FontAttributes="Bold"
-                                    FontSize="Medium"
-                                    Text="{Binding Name}" />
-                                <!--<Label Text="{Binding IsCode}" FontAttributes="Italic"/>-->
-                            </VerticalStackLayout>
-                        </Grid>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+            <Button
+                Grid.Row="1"
+                Grid.Column="3"
+                Command="{Binding FilterCommand}"
+                CommandParameter="1"
+                Style="{StaticResource filterStyle}"
+                Text="Necklace Filter" />
+            <Button
+                Grid.Row="1"
+                Grid.Column="4"
+                Command="{Binding ClearFilterCommand}"
+                Style="{StaticResource filterStyle}"
+                Text="Clear" />
+            <CollectionView
+                x:Name="CollectionView"
+                Grid.Row="2"
+                Grid.ColumnSpan="5"
+                EmptyView="No Items:("
+                ItemsLayout="VerticalGrid, 3"
+                ItemsSource="{Binding Jewleries}"
+                SelectionMode="Single">
 
-    </VerticalStackLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Jewelry">
+                        <Frame Margin="10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".2*" />
+                                    <ColumnDefinition Width=".8*" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Source="{Binding Photo}" />
+                                <VerticalStackLayout
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Padding="5"
+                                    VerticalOptions="Center">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="Medium"
+                                        Text="{Binding Name}" />
+                                    <!--<Label Text="{Binding IsCode}" FontAttributes="Italic"/>-->
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </Grid>
+    </ScrollView>
 </ContentPage>
