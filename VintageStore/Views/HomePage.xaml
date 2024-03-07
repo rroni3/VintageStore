@@ -10,7 +10,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <!--  colors  -->
-            <Color x:Key="eggPlant">#7426f0</Color>
+            <Color x:Key="biegh">#F5F5DC.</Color>
             <Style x:Key="filterStyle" TargetType="Button">
                 <Setter Property="FontFamily" Value="OpenSansBold" />
                 <Setter Property="HeightRequest" Value="70" />

@@ -18,7 +18,7 @@ namespace VintageStore.Services
         readonly HttpClient _httpClient;
         readonly JsonSerializerOptions _serializerOptions;
         static string URL = DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5286/Api/StoreApi/" : "http://localhost:5286/Api/StoreApi/";
-  static string IMAGE_URL = DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5286" : "http://localhost:5286";
+        static string IMAGE_URL = DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5286" : "http://localhost:5286";
 
         public StoreService()
         {
@@ -34,43 +34,43 @@ namespace VintageStore.Services
 
         }
 
-            public async Task<UserDTO> LoginAsync(string UserName, string Password)
+        public async Task<UserDTO> LoginAsync(string UserName, string Password)
+        {
+            try
             {
-                try
+                var user = new LoginDTO() { Username = UserName, Password = Password };
+                var jsonContent = JsonSerializer.Serialize(user, _serializerOptions);
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync($"{URL}Login", content);
+
+                switch (response.StatusCode)
                 {
-                    var user = new LoginDTO() {  Username = UserName, Password = Password };
-                    var jsonContent = JsonSerializer.Serialize(user, _serializerOptions);
-                    var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-                    var response = await _httpClient.PostAsync($"{URL}Login", content);
+                    case (HttpStatusCode.OK):
+                        {
+                            jsonContent = await response.Content.ReadAsStringAsync();
+                            User u = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions);
+                            await Task.Delay(2000);
+                            return new UserDTO() { Success = true, Message = string.Empty, User = u };
 
-                    switch (response.StatusCode)
-                    {
-                        case (HttpStatusCode.OK):
-                            {
-                                jsonContent = await response.Content.ReadAsStringAsync();
-                                User u = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions);
-                                await Task.Delay(2000);
-                                return new UserDTO() { Success = true, Message = string.Empty,   User=u };
-
-                            }
-                        case (HttpStatusCode.Unauthorized):
-                            {
-                            return new UserDTO() { Success = false, User = null, Message= Models.ErrorMessages.INVALID_LOGIN };
+                        }
+                    case (HttpStatusCode.Unauthorized):
+                        {
+                            return new UserDTO() { Success = false, User = null, Message = Models.ErrorMessages.INVALID_LOGIN };
 
 
-                            }
-
-                    }
+                        }
 
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-                return new UserDTO() { Success = false, User = null, Message = Models.ErrorMessages.INVALID_LOGIN };
-
 
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return new UserDTO() { Success = false, User = null, Message = Models.ErrorMessages.INVALID_LOGIN };
+
+
+        }
 
         public async Task<bool> RegisterAsync(User u)
         {
@@ -112,11 +112,40 @@ namespace VintageStore.Services
         //add Get returns List of Jewelry from server
         public async Task<List<Jewelry>> GetJewlsAsync()
         {
-             List<Jewelry> jewelries = new List<Jewelry>();
-            jewelries.Add(new Jewelry() { Id = 1, Category = new Category() { Id=1, Name="necklace"}, Name = "y", Photo = "hand_jewlery.jpg" });
-            return jewelries;
+            try
+            {
+
+
+                var response = await _httpClient.GetAsync($"{URL}GetJewleries");
+
+                switch (response.StatusCode)
+                {
+                    case (HttpStatusCode.OK):
+                        {
+                            var jsonContent = await response.Content.ReadAsStringAsync();
+                            List<Jewelry> j = JsonSerializer.Deserialize<List<Jewelry>>(jsonContent, _serializerOptions);
+                            await Task.Delay(2000);
+                            return j;
+
+                        }
+                    case (HttpStatusCode.Unauthorized):
+                        {
+                            return null;
+
+
+                        }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
         }
+    }
 
     } 
-}
+
 
