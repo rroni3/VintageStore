@@ -10,7 +10,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <!--  colors  -->
-            <Color x:Key="biegh">#F5F5DC.</Color>
+            <Color x:Key="beige">#F5F5DC</Color>
             <Style x:Key="filterStyle" TargetType="Button">
                 <Setter Property="FontFamily" Value="OpenSansBold" />
                 <Setter Property="HeightRequest" Value="70" />
@@ -18,6 +18,7 @@
                 <Setter Property="Margin" Value="15" />
                 <Setter Property="FontAutoScalingEnabled" Value="True" />
                 <Setter Property="FontSize" Value="10" />
+                <Setter Property="BackgroundColor" Value="Beige"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -31,7 +32,9 @@
                 Grid.ColumnSpan="15"
                 HorizontalOptions="Center"
                 Text="Welcome to the store"
-                TextColor="{StaticResource eggPlant}"
+                FontSize="Large"
+                FontAttributes="Bold"
+                TextColor="Beige"
                 VerticalOptions="Center" />
             <Button
                 Grid.Row="1"
@@ -77,29 +80,41 @@
                 ItemsSource="{Binding Jewleries}"
                 SelectionMode="Single">
 
-                <CollectionView.ItemTemplate>
+                <CollectionView.ItemTemplate >
+                
                     <DataTemplate x:DataType="models:Jewelry">
+                        
                         <Frame Margin="10">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference CollectionView}}"/>
+                            </Frame.GestureRecognizers>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width=".2*" />
-                                    <ColumnDefinition Width=".8*" />
+                                    <!--<ColumnDefinition Width=".8*" />-->
                                 </Grid.ColumnDefinitions>
-                                <Image
+                                <!--<Image
                                     Grid.Row="0"
                                     Grid.Column="0"
-                                    Source="{Binding Photo}" />
+                                    Source="{Binding Photo}" />-->
                                 <VerticalStackLayout
                                     Grid.Row="0"
                                     Grid.Column="1"
-                                    Padding="5"
+                                    Padding="125"
                                     VerticalOptions="Center">
                                     <Label
                                         FontAttributes="Bold"
-                                        FontSize="Medium"
+                                        FontSize="Small"
+                                        TextColor="Beige"
                                         Text="{Binding Name}" />
-                                    <!--<Label Text="{Binding IsCode}" FontAttributes="Italic"/>-->
+                                    <Image
+                                        
+                                     Source="{Binding Photo}" />
+
+
+
                                 </VerticalStackLayout>
+
                             </Grid>
                         </Frame>
                     </DataTemplate>

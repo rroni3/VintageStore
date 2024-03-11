@@ -24,7 +24,7 @@ namespace VintageStore.ViewModels
         public HomePageViewModel(StoreService storeService)
         {
             this.storeService = storeService;
-            LoadJewels();
+          
             FilterCommand = new Command<int>(async (x) => await Filter(x));
             ClearFilterCommand = new Command(async () => await ClearFilter());
         }
@@ -54,11 +54,13 @@ namespace VintageStore.ViewModels
         {
             Jewleries.Clear();
            _FullList= await storeService.GetJewlsAsync();
-
-            foreach (var item in _FullList)
-            {
-                Jewleries.Add(item);
-            }
+            if (_FullList != null)
+                foreach (var item in _FullList)
+                {
+                    Jewleries.Add(item);
+                }
+            else
+                await AppShell.Current.DisplayAlert("error", "error", "Ok");
         }
     }
 }

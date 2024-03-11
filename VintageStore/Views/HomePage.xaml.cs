@@ -15,6 +15,16 @@ public partial class HomePage : ContentPage
 
     }
 
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        var vm=BindingContext as HomePageViewModel;
+        if (vm != null)
+        {
+            await vm.LoadJewels();
+        }
+    }
+
     //private List<Jewelry> GetClothes()
     //{
     //    return new List<Jewelry>
