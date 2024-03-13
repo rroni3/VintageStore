@@ -6,7 +6,10 @@
     xmlns:viewmodels="clr-namespace:VintageStore.ViewModels"
     Title="Main Page"
     x:DataType="viewmodels:MainPageViewModel"
-    FlowDirection="RightToLeft">
+    FlowDirection="RightToLeft"
+    Shell.FlyoutBehavior="Disabled"
+    >
+    
     <ScrollView>
 
         <Grid>

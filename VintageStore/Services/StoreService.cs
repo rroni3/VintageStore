@@ -18,7 +18,7 @@ namespace VintageStore.Services
         readonly HttpClient _httpClient;
         readonly JsonSerializerOptions _serializerOptions;
         static string URL = DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5286/Api/StoreApi/" : "http://localhost:5286/Api/StoreApi/";
-        static string IMAGE_URL = DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5286" : "http://localhost:5286";
+        static string IMAGE_URL = DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5286/Images/" : "http://localhost:5286/Images/";
 
         public StoreService()
         {
@@ -124,6 +124,11 @@ namespace VintageStore.Services
                         {
                             var jsonContent = await response.Content.ReadAsStringAsync();
                             List<Jewelry> j = JsonSerializer.Deserialize<List<Jewelry>>(jsonContent, _serializerOptions);
+                            if (j != null && j.Count > 0)
+                                foreach (var item in j)
+                                {
+                                   item.Photo=IMAGE_URL+item.Photo;
+                                }
                             await Task.Delay(2000);
                             return j;
 

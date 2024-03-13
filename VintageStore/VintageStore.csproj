@@ -50,9 +50,15 @@
 
 	<ItemGroup>
 	  <None Remove="Platforms\Android\Resources\xml\network_security_config.xml" />
+	  <None Remove="Resources\Images\about.jpg" />
 	  <None Remove="Resources\Images\hand_jewelry.jpg" />
+	  <None Remove="Resources\Images\homepage.jpg" />
+	  <None Remove="Resources\Images\logout.jpg" />
+	  <None Remove="Resources\Images\Milano.jpg" />
 	  <None Remove="Resources\Images\neclace.jpg" />
+	  <None Remove="Resources\Images\profile.jpg" />
 	  <None Remove="Resources\Images\rings.jpg" />
+	  <None Remove="Resources\Images\sviva.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -72,7 +78,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\AboutPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\CollectionViewDemo.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\EnvironmentalPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\HomePage.xaml">
@@ -81,7 +93,13 @@
 	  <MauiXaml Update="Views\LoadingPage.xaml.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\LogOutPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\MainPage.xaml.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ProfilePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Register.Page.xaml">

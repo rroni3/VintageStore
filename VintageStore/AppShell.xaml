@@ -5,11 +5,43 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:VintageStore"
     xmlns:views="clr-namespace:VintageStore.Views"
-    Shell.FlyoutBehavior="Disabled">
+    Shell.FlyoutBehavior="Flyout">
 
-    <ShellContent
+    <ShellContent 
+       
         Title="Home"
         ContentTemplate="{DataTemplate views:MainPage}"
         Route="MainPage" />
-
+    
+    <FlyoutItem Title="Log Out"
+                Icon="logout.jpg">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate views:LogOutPage}" Route="LogOutPage" />
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="About the founder"
+                Icon="about.jpg">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate views:AboutPage}" Route="AboutPage"    />
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="Environmental Quality"
+             Icon="sviva.jpg">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate views:EnvironmentalPage}" />
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="Profile"
+             Icon="profile.jpg">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate views:ProfilePage}" Route="ProfilePage"/>
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="Home"
+          Icon="HomePage.jpg">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate views:HomePage}" Route="HomePage"/>
+        </Tab>
+    </FlyoutItem>
+     <!--<MenuItem Text="LogOut" Command="{}"-->
 </Shell>

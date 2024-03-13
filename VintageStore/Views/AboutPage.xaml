@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="VintageStore.Views.AboutPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="AboutPage">
+    <Grid
+        ColumnDefinitions="*,*"
+        ColumnSpacing="2"
+        RowDefinitions="*,*,*">
+        <Label
+            Grid.Row="0"
+            Grid.ColumnSpan="15"
+            FontAttributes="Bold"
+            FontSize="Large"
+            HorizontalOptions="Center"
+            Text="About The Founder"
+            TextColor="Pink"
+            VerticalOptions="Center" />
+
+        <Label
+            Grid.Row="1"
+            Grid.Column="0"
+            FontSize="Medium"
+            FontAttributes="Bold"
+            TextColor="Pink"
+            Text=".האתר נבנה ועוצב בהשראת ביקור בעיר מילאנו"
+        />
+        <Image Source="milano.jpg"
+               Grid.Column="1"
+               Grid.Row="1"/>
+        
+
+    </Grid>
+</ContentPage>

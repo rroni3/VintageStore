@@ -10,8 +10,10 @@ namespace VintageStore
             Routing.RegisterRoute("Register", typeof(RegisterPage));
             Routing.RegisterRoute("Login", typeof(MainPage));
             Routing.RegisterRoute("HomePage", typeof(HomePage));
-            Routing.RegisterRoute("HomePage", typeof (HomePage));
-            
+            Routing.RegisterRoute("ProfilePage", typeof (ProfilePage));
+            Routing.RegisterRoute("AboutPage", typeof(AboutPage));
+            Routing.RegisterRoute("EnvironmentalPage", typeof(EnvironmentalPage));
+            Routing.RegisterRoute("LogOutPage", typeof(LogOutPage));
         }
     }
 }

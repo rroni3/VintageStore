@@ -132,7 +132,7 @@ namespace VintageStore.ViewModels
                         await AppShell.Current.DisplayAlert("התחברת", "אישור להתחלת צפייה בחנות", "אישור");
                         //await SecureStorage.Default.SetAsync("LoggedUser", JsonSerializer.Serialize(user));
                         
-                        await Shell.Current.GoToAsync("HomePage");
+                        await Shell.Current.GoToAsync("///HomePage");
                     }
 
 

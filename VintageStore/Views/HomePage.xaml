@@ -11,6 +11,7 @@
         <ResourceDictionary>
             <!--  colors  -->
             <Color x:Key="beige">#F5F5DC</Color>
+            <!--<Background Source="milano.jpg"></Background>-->
             <Style x:Key="filterStyle" TargetType="Button">
                 <Setter Property="FontFamily" Value="OpenSansBold" />
                 <Setter Property="HeightRequest" Value="70" />
@@ -23,7 +24,10 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ScrollView Margin="10">
+        
         <Grid
+            
+            
             ColumnDefinitions="*,*,*,*,*"
             ColumnSpacing="2"
             RowDefinitions="*,*,*">
