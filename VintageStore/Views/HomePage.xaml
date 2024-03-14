@@ -19,25 +19,23 @@
                 <Setter Property="Margin" Value="15" />
                 <Setter Property="FontAutoScalingEnabled" Value="True" />
                 <Setter Property="FontSize" Value="10" />
-                <Setter Property="BackgroundColor" Value="Beige"/>
+                <Setter Property="BackgroundColor" Value="Beige" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ScrollView Margin="10">
-        
+
         <Grid
-            
-            
             ColumnDefinitions="*,*,*,*,*"
             ColumnSpacing="2"
             RowDefinitions="*,*,*">
             <Label
                 Grid.Row="0"
                 Grid.ColumnSpan="15"
-                HorizontalOptions="Center"
-                Text="Welcome to the store"
-                FontSize="Large"
                 FontAttributes="Bold"
+                FontSize="Large"
+                HorizontalOptions="Center"
+                Text="The Jewelry Store"
                 TextColor="Beige"
                 VerticalOptions="Center" />
             <Button
@@ -84,36 +82,38 @@
                 ItemsSource="{Binding Jewleries}"
                 SelectionMode="Single">
 
-                <CollectionView.ItemTemplate >
-                
+                <CollectionView.ItemTemplate>
+
                     <DataTemplate x:DataType="models:Jewelry">
-                        
+
                         <Frame Margin="10">
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={x:Reference CollectionView}}"/>
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference CollectionView}}" />
                             </Frame.GestureRecognizers>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width=".2*" />
-                                    <!--<ColumnDefinition Width=".8*" />-->
+                                
+                                <ColumnDefinition Width=".8*" />
+                                
                                 </Grid.ColumnDefinitions>
                                 <!--<Image
                                     Grid.Row="0"
                                     Grid.Column="0"
                                     Source="{Binding Photo}" />-->
-                                <VerticalStackLayout
+                                  <VerticalStackLayout  
+                                
                                     Grid.Row="0"
                                     Grid.Column="1"
-                                    Padding="125"
+                                    Padding="100"
                                     VerticalOptions="Center">
-                                    <Label
-                                        FontAttributes="Bold"
-                                        FontSize="Small"
-                                        TextColor="Beige"
-                                        Text="{Binding Name}" />
-                                    <Image
-                                        
-                                     Source="{Binding Photo}" />
+                                
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Small"
+                                    Text="{Binding Name}"
+                                    TextColor="Beige" />
+                                <Image Source="{Binding Photo}" />
 
 
 

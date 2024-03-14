@@ -59,6 +59,7 @@
 	  <None Remove="Resources\Images\profile.jpg" />
 	  <None Remove="Resources\Images\rings.jpg" />
 	  <None Remove="Resources\Images\sviva.jpg" />
+	  <None Remove="Resources\Images\world.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -108,6 +109,10 @@
 	  <MauiXaml Update="Views\StorePage.xaml.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Views\NewFolder\" />
 	</ItemGroup>
 
 </Project>
