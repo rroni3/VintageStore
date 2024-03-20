@@ -12,5 +12,7 @@ namespace VintageStore.Models
         public string Name { get; set; }
         public Category Category { get; set; }
         public string Photo { get; set; }
+
+        public int Price { get; set; }
     }
 }

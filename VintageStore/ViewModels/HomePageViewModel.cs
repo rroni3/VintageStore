@@ -16,24 +16,33 @@ namespace VintageStore.ViewModels
 
         public ObservableCollection<Jewelry> Jewleries { get; set; }= new ObservableCollection<Jewelry>();
 
+        private bool isVisble;
+
+        public bool IsVisble
+        {
+            get => isVisble;
+            set { if (isVisble != value) { isVisble = value; OnPropertyChange(); } }
+        }
         private List<Jewelry> _FullList;
 
         public ICommand FilterCommand { get; private set; }
         public ICommand ClearFilterCommand { get; private set; }
+        public ICommand ShowButtonCommand {  get; private set; }
 
         public HomePageViewModel(StoreService storeService)
         {
             this.storeService = storeService;
-          
-            FilterCommand = new Command<int>(async (x) => await Filter(x));
+            IsVisble = false;
+              FilterCommand = new Command<string>(async (x) => await Filter(int.Parse(x)));
             ClearFilterCommand = new Command(async () => await ClearFilter());
+            ShowButtonCommand = new Command(ShowButton);
         }
 
         private async Task Filter(int categoryId)
         {
             var filtered=_FullList.Where(x=>x.Category.Id == categoryId).ToList();
             Jewleries.Clear();
-            foreach (var item in filtered)
+                foreach (var item in filtered)
             {
                 Jewleries.Add(item);
             }
@@ -61,6 +70,11 @@ namespace VintageStore.ViewModels
                 }
             else
                 await AppShell.Current.DisplayAlert("error", "error", "Ok");
+        }
+
+        public async void ShowButton()
+        {
+            IsVisble = true;
         }
     }
 }

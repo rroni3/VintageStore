@@ -23,12 +23,13 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
+    <!--<Background.Source="milano.jpg">-->
     <ScrollView Margin="10">
 
         <Grid
             ColumnDefinitions="*,*,*,*,*"
             ColumnSpacing="2"
-            RowDefinitions="*,*,*">
+            RowDefinitions="*,*,*,*">
             <Label
                 Grid.Row="0"
                 Grid.ColumnSpan="15"
@@ -73,50 +74,57 @@
                 Command="{Binding ClearFilterCommand}"
                 Style="{StaticResource filterStyle}"
                 Text="Clear" />
+            <Button Style="{StaticResource filterStyle}" 
+        Text="purchase"
+                    Grid.Row="2"
+Grid.ColumnSpan="5"/>
             <CollectionView
                 x:Name="CollectionView"
-                Grid.Row="2"
+                Grid.Row="3"
                 Grid.ColumnSpan="5"
                 EmptyView="No Items:("
                 ItemsLayout="VerticalGrid, 3"
                 ItemsSource="{Binding Jewleries}"
-                SelectionMode="Single">
+                SelectionMode="Multiple">
 
                 <CollectionView.ItemTemplate>
 
                     <DataTemplate x:DataType="models:Jewelry">
 
                         <Frame Margin="10">
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={x:Reference CollectionView}}" />
-                            </Frame.GestureRecognizers>
+
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width=".2*" />
-                                
-                                <ColumnDefinition Width=".8*" />
-                                
+
+                                    <ColumnDefinition Width=".8*" />
+
                                 </Grid.ColumnDefinitions>
                                 <!--<Image
                                     Grid.Row="0"
                                     Grid.Column="0"
                                     Source="{Binding Photo}" />-->
-                                  <VerticalStackLayout  
-                                
+                                <VerticalStackLayout
                                     Grid.Row="0"
                                     Grid.Column="1"
                                     Padding="100"
+                                    HeightRequest="200"
                                     VerticalOptions="Center">
-                                
-                                <Label
-                                    FontAttributes="Bold"
-                                    FontSize="Small"
-                                    Text="{Binding Name}"
-                                    TextColor="Beige" />
-                                <Image Source="{Binding Photo}" />
 
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="Small"
+                                        Text="{Binding Name}"
+                                        TextColor="Beige" />
+                                    <Image Source="{Binding Photo}">
 
+                                        
+                                    </Image>
+                                   
+                                        
 
+                                        
+                                    
                                 </VerticalStackLayout>
 
                             </Grid>
@@ -127,4 +135,6 @@
 
         </Grid>
     </ScrollView>
+
+    <!--</Background.Source>-->
 </ContentPage>
