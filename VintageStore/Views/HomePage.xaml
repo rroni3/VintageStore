@@ -76,6 +76,8 @@
                 Text="Clear" />
             <Button Style="{StaticResource filterStyle}" 
         Text="purchase"
+                    Command="{Binding OrderCommand}"
+                    
                     Grid.Row="2"
 Grid.ColumnSpan="5"/>
             <CollectionView

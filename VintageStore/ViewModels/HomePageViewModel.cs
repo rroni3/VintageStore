@@ -76,5 +76,9 @@ namespace VintageStore.ViewModels
         {
             IsVisble = true;
         }
+        public async Task Order()
+        {
+
+        }
     }
 }
