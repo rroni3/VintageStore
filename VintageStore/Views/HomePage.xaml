@@ -74,12 +74,12 @@
                 Command="{Binding ClearFilterCommand}"
                 Style="{StaticResource filterStyle}"
                 Text="Clear" />
-            <Button Style="{StaticResource filterStyle}" 
-        Text="purchase"
-                    Command="{Binding OrderCommand}"
-                    
-                    Grid.Row="2"
-Grid.ColumnSpan="5"/>
+            <Button
+                Grid.Row="2"
+                Grid.ColumnSpan="5"
+                Command="{Binding OrderCommand}"
+                Style="{StaticResource filterStyle}"
+                Text="purchase" />
             <CollectionView
                 x:Name="CollectionView"
                 Grid.Row="3"
@@ -87,50 +87,39 @@ Grid.ColumnSpan="5"/>
                 EmptyView="No Items:("
                 ItemsLayout="VerticalGrid, 3"
                 ItemsSource="{Binding Jewleries}"
+                SelectedItems="{Binding SelectedJewls}"
                 SelectionMode="Multiple">
 
                 <CollectionView.ItemTemplate>
 
                     <DataTemplate x:DataType="models:Jewelry">
 
-                        <Frame Margin="10">
 
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width=".2*" />
 
-                                    <ColumnDefinition Width=".8*" />
-
-                                </Grid.ColumnDefinitions>
-                                <!--<Image
+                        <!--<Image
                                     Grid.Row="0"
                                     Grid.Column="0"
                                     Source="{Binding Photo}" />-->
-                                <VerticalStackLayout
-                                    Grid.Row="0"
-                                    Grid.Column="1"
-                                    Padding="100"
-                                    HeightRequest="200"
-                                    VerticalOptions="Center">
+                        <VerticalStackLayout
+                            HeightRequest="200"
+                            Spacing="5"
+                            VerticalOptions="Center">
 
-                                    <Label
-                                        FontAttributes="Bold"
-                                        FontSize="Small"
-                                        Text="{Binding Name}"
-                                        TextColor="Beige" />
-                                    <Image Source="{Binding Photo}">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="Small"
+                                Text="{Binding Name}"
+                                TextColor="Beige" />
+                            <Image Aspect="AspectFit" Source="{Binding Photo}" />
 
-                                        
-                                    </Image>
-                                   
-                                        
 
-                                        
-                                    
-                                </VerticalStackLayout>
 
-                            </Grid>
-                        </Frame>
+
+
+                        </VerticalStackLayout>
+
+
+
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

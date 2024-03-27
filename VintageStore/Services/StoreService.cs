@@ -15,6 +15,7 @@ namespace VintageStore.Services
 {
     public class StoreService
     {
+        User logedUser;
         readonly HttpClient _httpClient;
         readonly JsonSerializerOptions _serializerOptions;
         static string URL = DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5286/Api/StoreApi/" : "http://localhost:5286/Api/StoreApi/";
@@ -33,6 +34,10 @@ namespace VintageStore.Services
             };
 
         }
+        public User GetCurrentUser()
+        {
+            return logedUser;
+        }
 
         public async Task<UserDTO> LoginAsync(string UserName, string Password)
         {
@@ -50,6 +55,7 @@ namespace VintageStore.Services
                             jsonContent = await response.Content.ReadAsStringAsync();
                             User u = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions);
                             await Task.Delay(2000);
+                            logedUser = u;
                             return new UserDTO() { Success = true, Message = string.Empty, User = u };
 
                         }
@@ -148,6 +154,43 @@ namespace VintageStore.Services
                 Console.WriteLine(ex.Message);
             }
             return null;
+        }
+
+        public async Task<bool> AddOrder(Order o)
+        {
+            try
+            {
+                
+                var jsonContent = JsonSerializer.Serialize(o, _serializerOptions);
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync($"{URL}AddOrder", content);
+
+                switch (response.StatusCode)
+                {
+                    case (HttpStatusCode.OK):
+                        {
+                            
+                            return true;
+
+                        }
+                    default:
+                        {
+                            //
+                            return false;
+
+
+                        }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+
+
         }
     }
 

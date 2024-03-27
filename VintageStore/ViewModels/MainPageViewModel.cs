@@ -101,6 +101,7 @@ namespace VintageStore.ViewModels
 
         public MainPageViewModel(StoreService service)
         {
+            
             _service = service;
             RegisterPageCommand = new Command(async () =>
             {
