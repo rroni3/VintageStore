@@ -17,7 +17,15 @@ namespace VintageStore.ViewModels
         public ObservableCollection<Jewelry> Jewleries { get; set; }= new ObservableCollection<Jewelry>();
 
         private bool isVisble;
-        public ObservableCollection<Jewelry> SelectedJewls { get; set; } = new ObservableCollection<Jewelry>();
+
+        private ObservableCollection<object> selectedJewls;
+        public ObservableCollection<object> SelectedJewls 
+        { get => selectedJewls;
+            set {
+                selectedJewls = value;
+                OnPropertyChange();
+            }
+        }
 
         public bool IsVisble
         {
@@ -38,6 +46,7 @@ namespace VintageStore.ViewModels
             ClearFilterCommand = new Command(async () => await ClearFilter());
             ShowButtonCommand = new Command(ShowButton);
             OrderCommand = new Command(async () => await Order());
+            SelectedJewls = new ObservableCollection<object>();     
         }
 
         private async Task Filter(int categoryId)
@@ -80,12 +89,15 @@ namespace VintageStore.ViewModels
         }
         public async Task Order()
         {
+            List<Jewelry> jewels = new List<Jewelry>();
             int totalp = 0;
             foreach (var item in SelectedJewls)
             {
-                totalp = totalp + item.Price;
+                Jewelry j= item as Jewelry;
+                totalp = totalp + j.Price;
+                jewels.Add(j);
             }
-            Order newOrder = new Order() { Date = DateTime.Now, jewelries = SelectedJewls.ToList(), TotalPrice = totalp, User = storeService.GetCurrentUser() };
+            Order newOrder = new Order() { Date = DateTime.Now,  jewelries=jewels, TotalPrice = totalp, User = storeService.GetCurrentUser() };
             await storeService.AddOrder(newOrder);
         }
     }
