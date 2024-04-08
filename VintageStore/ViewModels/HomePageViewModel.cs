@@ -45,8 +45,9 @@ namespace VintageStore.ViewModels
               FilterCommand = new Command<string>(async (x) => await Filter(int.Parse(x)));
             ClearFilterCommand = new Command(async () => await ClearFilter());
             ShowButtonCommand = new Command(ShowButton);
-            OrderCommand = new Command(async () => await Order());
-            SelectedJewls = new ObservableCollection<object>();     
+            SelectedJewls = new ObservableCollection<object>();
+            OrderCommand = new Command( Order);
+                
         }
 
         private async Task Filter(int categoryId)
@@ -87,7 +88,7 @@ namespace VintageStore.ViewModels
         {
             IsVisble = true;
         }
-        public async Task Order()
+        public async void Order()
         {
             List<Jewelry> jewels = new List<Jewelry>();
             int totalp = 0;
@@ -97,7 +98,7 @@ namespace VintageStore.ViewModels
                 totalp = totalp + j.Price;
                 jewels.Add(j);
             }
-            Order newOrder = new Order() { Date = DateTime.Now,  jewelries=jewels, TotalPrice = totalp, User = storeService.GetCurrentUser() };
+            Order newOrder = new Order() { Date = DateTime.Now,  OrderItems=jewels, TotalPrice = totalp, User = storeService.GetCurrentUser() };
             await storeService.AddOrder(newOrder);
         }
     }

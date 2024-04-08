@@ -10,7 +10,7 @@ namespace VintageStore.Models
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }
-        public List<Jewelry> jewelries { get; set; }
+        public List<Jewelry> OrderItems { get; set; }
         public int TotalPrice {  get; set; }
         public User User { get; set; }
     }
