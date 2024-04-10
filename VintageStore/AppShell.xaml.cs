@@ -1,4 +1,7 @@
-﻿using VintageStore.Views;
+﻿using System.Windows.Input;
+using VintageStore.Views;
+
+using VintageStore.Services;
 
 namespace VintageStore
 {
@@ -14,6 +17,18 @@ namespace VintageStore
             Routing.RegisterRoute("AboutPage", typeof(AboutPage));
             Routing.RegisterRoute("EnvironmentalPage", typeof(EnvironmentalPage));
             Routing.RegisterRoute("LogOutPage", typeof(LogOutPage));
+            
+        }
+
+        StoreService service;
+        public ICommand LogOutCommand { get; private set; }
+        private async Task LogOut (StoreService _service)
+        {
+            service=_service;
+           _service.SetCurrentUser(null);
+
+
+
         }
     }
 }

@@ -38,6 +38,10 @@ namespace VintageStore.Services
         {
             return logedUser;
         }
+        public void SetCurrentUser(User u)
+        {
+            logedUser=u;
+        }
 
         public async Task<UserDTO> LoginAsync(string UserName, string Password)
         {
