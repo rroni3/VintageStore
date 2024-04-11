@@ -7,44 +7,40 @@
     xmlns:views="clr-namespace:VintageStore.Views"
     Shell.FlyoutBehavior="Flyout">
 
-    <ShellContent 
-       
+    <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate views:HomePage}"
-        Route="HomePage"
-        Icon="Home.jpg"/>
-    
+        ContentTemplate="{DataTemplate views:MainPage}"
+        Icon="Home.jpg"
+        Route="MainPage" />
+
     <!--<FlyoutItem Title="Log Out"
                 Icon="logout.jpg">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate views:LogOutPage}" Route="LogOutPage" />
         </Tab>
     </FlyoutItem>-->
-    <FlyoutItem Title="About the founder"
-                Icon="about.jpg">
+    <FlyoutItem Title="About the founder" Icon="about.jpg">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate views:AboutPage}" Route="AboutPage"    />
+            <ShellContent ContentTemplate="{DataTemplate views:AboutPage}" Route="AboutPage" />
         </Tab>
     </FlyoutItem>
-    <FlyoutItem Title="Environmental Quality"
-             Icon="sviva.jpg">
+    <FlyoutItem Title="Environmental Quality" Icon="sviva.jpg">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate views:EnvironmentalPage}" />
         </Tab>
     </FlyoutItem>
-    <FlyoutItem Title="Profile"
-             Icon="profile.jpg">
+    <FlyoutItem Title="Profile" Icon="profile.jpg">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate views:ProfilePage}" Route="ProfilePage"/>
+            <ShellContent ContentTemplate="{DataTemplate views:ProfilePage}" Route="ProfilePage" />
         </Tab>
     </FlyoutItem>
-    <!--<FlyoutItem Title="Home"
+    <FlyoutItem Title="Home"
           Icon="HomePage.jpg">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate views:HomePage}" Route="HomePage"/>
         </Tab>
-    </FlyoutItem>-->
-    <MenuItem Text="LogOut" Command="{Binding LogOutCommand}" 
-              ContentTemplate="{DataTemplate views:MainPage}"
-              Route="MainPage" <!--Icon="logout.jpg"--> />
+    </FlyoutItem>
+    <MenuItem 
+        IconImageSource="logout.jpg"
+        Text="LogOut" />
 </Shell>
