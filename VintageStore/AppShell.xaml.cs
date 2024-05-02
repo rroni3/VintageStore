@@ -19,18 +19,16 @@ namespace VintageStore
             Routing.RegisterRoute("EnvironmentalPage", typeof(EnvironmentalPage));
             Routing.RegisterRoute("LogOutPage", typeof(LogOutPage));
             
-            LogOutCommand = new Command<StoreService>(LogOut);
+          
         }
 
         StoreService service;
-        public ICommand LogOutCommand { get; private set; }
-        private async void LogOut (StoreService _service)
+     
+
+        private async void LogOutOnClick(object sender, EventArgs e)
         {
-            service=_service;
-           _service.SetCurrentUser(null);
+
             await Shell.Current.GoToAsync("///MainPage");
-
-
         }
     }
 }

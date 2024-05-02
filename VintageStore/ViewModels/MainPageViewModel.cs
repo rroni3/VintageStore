@@ -103,6 +103,7 @@ namespace VintageStore.ViewModels
         {
             
             _service = service;
+            service.SetCurrentUser(null);
             RegisterPageCommand = new Command(async () =>
             {
                 await Shell.Current.GoToAsync("Register");
@@ -136,6 +137,7 @@ namespace VintageStore.ViewModels
                         await Shell.Current.GoToAsync("///HomePage");
                     }
 
+            Password = string.Empty;
 
 
                 }
