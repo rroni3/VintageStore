@@ -152,7 +152,7 @@ namespace VintageStore.ViewModels
           bool result= await service.RegisterAsync(u);
             if(result==true)
             {
-                await AppShell.Current.GoToAsync("HomePage");
+                await Shell.Current.GoToAsync("///HomePage");
             }
         }
 
