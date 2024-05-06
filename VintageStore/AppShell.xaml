@@ -34,13 +34,20 @@
             <ShellContent ContentTemplate="{DataTemplate views:ProfilePage}" Route="ProfilePage" />
         </Tab>
     </FlyoutItem>
-    <FlyoutItem Title="Home"
-          Icon="HomePage.jpg">
+    <FlyoutItem Title="Home" Icon="HomePage.jpg">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate views:HomePage}" Route="HomePage"/>
+            <ShellContent ContentTemplate="{DataTemplate views:HomePage}" Route="HomePage" />
         </Tab>
     </FlyoutItem>
-    <MenuItem Clicked="LogOutOnClick" Command="{Binding LogOutCommand}"
+    <FlyoutItem Title="Admin" Icon="adminpage.jpg"> 
+        <Tab>
+            
+            <ShellContent ContentTemplate="{DataTemplate views:AdminPage}" Route="AdminPage" />
+        </Tab>
+    </FlyoutItem>
+    <MenuItem
+        Clicked="LogOutOnClick"
+        Command="{Binding LogOutCommand}"
         IconImageSource="logout.jpg"
         Text="LogOut" />
 </Shell>

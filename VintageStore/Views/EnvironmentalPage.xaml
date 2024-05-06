@@ -1,46 +1,47 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VintageStore.Views.EnvironmentalPage"
-             Title="EnvironmentalPage">
+<ContentPage
+    x:Class="VintageStore.Views.EnvironmentalPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="EnvironmentalPage">
     <ScrollView>
         <Grid
-    ColumnDefinitions="*,*"
-    ColumnSpacing="2"
-    RowDefinitions="*,*,*">
+            ColumnDefinitions="*,*"
+            ColumnSpacing="2"
+            RowDefinitions="*,*,*">
             <Label
-        Grid.Row="0"
-        Grid.ColumnSpan="15"
-        FontAttributes="Bold"
-        FontSize="Large"
-        HorizontalOptions="Center"
-        Text="למען הקיימות בארץ"
-        TextColor="Pink"
-        VerticalOptions="Center" />
+                Grid.Row="0"
+                Grid.ColumnSpan="15"
+                FontAttributes="Bold"
+                FontSize="Large"
+                HorizontalOptions="Center"
+                Text="למען הקיימות בארץ"
+                TextColor="Pink"
+                VerticalOptions="Center" />
 
             <Label
-        Grid.Row="1"
-        Grid.Column="0"
-        FontAttributes="Bold"
-        FontSize="Medium"
-        Text="כ בעלו משמעות כמו זו.בעלות משמעות כמו זו. לכן אני מאפליקצית התכשיטים שלנו תומכת בחקלאות בארץ.אנו תורמים 10% מכל הרווחים של החנות לטובת עמותות חקלאות ברחבי הארץ.   "
-        TextColor="Pink" />
+                Grid.Row="1"
+                Grid.Column="0"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                Text="אפליקצית התכשיטים שלנו תומכת בחקלאות בארץ.אנו תורמים 10% מכל הרווחים של החנות לטובת עמותות חקלאות ברחבי הארץ.   "
+                TextColor="Pink" />
             <Image
-        Grid.Row="1"
-        Grid.Column="1"
-        Source="hak.jpg" />
+                Grid.Row="1"
+                Grid.Column="1"
+                Source="hak.jpg" />
 
             <Image
-        Grid.Row="2"
-        Grid.Column="0"
-        Source="flower.jpg" />
+                Grid.Row="2"
+                Grid.Column="0"
+                Source="flower.jpg" />
             <Label
-        Grid.Row="2"
-        Grid.Column="1"
-        FontAttributes="Bold"
-        FontSize="Medium"
-        Text="במיוחד לאחר הנזק העצום שנגרם לחקלאות בדרום לאחר השביעי לאוקטובר, זה חשוב לתמוך במטרות בעלות משמעות לארץ כמו זו. לכן אני ממליצה לכם לרכוש בחנות האפליקציה ולתרום לחקלאות בדרום."
-        TextColor="Pink" />
+                Grid.Row="2"
+                Grid.Column="1"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                Text="במיוחד לאחר הנזק העצום שנגרם לחקלאות בדרום לאחר השביעי לאוקטובר, זה חשוב לתמוך במטרות בעלות משמעות לארץ כמו זו. לכן אני ממליצה לכם לרכוש בחנות האפליקציה ולתרום לחקלאות בדרום."
+                TextColor="Pink" />
 
 
 

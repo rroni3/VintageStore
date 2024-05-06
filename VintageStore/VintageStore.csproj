@@ -51,7 +51,10 @@
 	<ItemGroup>
 	  <None Remove="Platforms\Android\Resources\xml\network_security_config.xml" />
 	  <None Remove="Resources\Images\about.jpg" />
+	  <None Remove="Resources\Images\admin.jpg" />
+	  <None Remove="Resources\Images\adminpage.jpg" />
 	  <None Remove="Resources\Images\flower.jpg" />
+	  <None Remove="Resources\Images\frontimg.jpg" />
 	  <None Remove="Resources\Images\hak.jpg" />
 	  <None Remove="Resources\Images\hand_jewelry.jpg" />
 	  <None Remove="Resources\Images\homepage.jpg" />
@@ -83,6 +86,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Views\AboutPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AdminPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\CollectionViewDemo.xaml">

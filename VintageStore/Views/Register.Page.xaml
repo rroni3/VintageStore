@@ -15,7 +15,9 @@
             FontSize="16"
             HorizontalOptions="EndAndExpand"
             Text="Back To Login"
-            VerticalOptions="EndAndExpand" />
+            VerticalOptions="EndAndExpand" 
+            BackgroundColor="Beige"
+            TextColor="Black"/>
         <Label
             HorizontalOptions="Center"
             Text=" Please Register To Continue"
@@ -81,7 +83,9 @@
             Margin="0,15"
             Command="{Binding RegisterCommand}"
             FontFamily="OpenSansBold"
-            Text="Enter" />
+            Text="Enter"
+            BackgroundColor="Beige"
+            TextColor="Black"/>
     </VerticalStackLayout>
 
 </ContentPage>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VintageStore.Views.AdminPage"
+             Title="AdminPage">
+    <VerticalStackLayout>
+       
+        <Label
+        HorizontalOptions="Center"
+        Text=" Hello Admin"
+        VerticalOptions="Center" />
+        <Label
+        HorizontalOptions="Center"
+        Text=" Want To Add A Jewlery To The Store?"
+        VerticalOptions="Center" />
+
+        <Label
+        FontFamily="OpenSansRegular"
+        FontSize="16"
+        Text="Name" />
+
+        <Grid Margin="0,5" RowDefinitions="auto,auto">
+
+            <Entry Placeholder="Enter Name" Text="{Binding Name}" />
+
+        </Grid>
+        <Label
+        FontFamily="OpenSansRegular"
+        FontSize="16"
+        Text="Category" />
+        <Grid Margin="0,5" RowDefinitions="auto,auto">
+
+            <Entry
+            Margin="5,0"
+            BackgroundColor="Transparent"
+            IsPassword="True"
+            Placeholder="Enter Category"
+            PlaceholderColor="Gray"
+            Text="{Binding Password}"
+            TextColor="Black" />
+        </Grid>
+        <Label
+        FontFamily="OpenSansRegular"
+        FontSize="16"
+        Text="Photo" />
+
+        <Grid Margin="0,5" RowDefinitions="auto,auto">
+
+            <Entry Placeholder="Enter Photo URL" Text="{Binding Photo}" />
+
+        </Grid>
+
+        <Label
+        FontFamily="OpenSansRegular"
+        FontSize="16"
+        Text="Price" />
+
+        <Grid Margin="0,5" RowDefinitions="auto,auto">
+
+            <Entry Placeholder="Enter Price" Text="{Binding Price}" />
+
+        </Grid>
+       
+        <Button
+        Margin="0,15"
+        Command="{Binding AddJewleryCommand}"
+        FontFamily="OpenSansBold"
+        Text="Enter"
+        BackgroundColor="Beige"
+        TextColor="Black"/>
+    </VerticalStackLayout>
+
+</ContentPage>

@@ -7,9 +7,8 @@
     Title="Main Page"
     x:DataType="viewmodels:MainPageViewModel"
     FlowDirection="RightToLeft"
-    Shell.FlyoutBehavior="Disabled"
-    >
-    
+    Shell.FlyoutBehavior="Disabled">
+
     <ScrollView>
 
         <Grid>
@@ -17,15 +16,20 @@
             <StackLayout Margin="20">
 
 
-                <Image
+                <!--<Image
                     Aspect="AspectFill"
                     HeightRequest="200"
                     HorizontalOptions="Center"
                     Source="logo.png"
-                    WidthRequest="200" />
+                    WidthRequest="200" />-->
                 <!--  הודעת פתיחה ושגיאת טופס  -->
                 <StackLayout Margin="0,80">
-                    <Label FontSize="32" Text="Welcome To The Vintage Store" />
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="600"
+                        HorizontalOptions="Center"
+                        Source="frontimg.jpg"
+                        WidthRequest="400" />
                     <Label
                         FontFamily="OpenSansRegular"
                         FontSize="16"
@@ -72,8 +76,10 @@
 
                 <Button
                     Margin="0,15"
+                    BackgroundColor="Beige"
                     Command="{Binding LogInCommand}"
                     FontFamily="OpenSansBold"
+                    TextColor="Black"
                     Text="Enter" />
                 <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
 
@@ -85,11 +91,13 @@
                     TextColor="{DynamicResource SecondaryColor}"
                     VerticalOptions="EndAndExpand" />-->
                     <Button
+                        BackgroundColor="Beige"
                         Command="{Binding RegisterPageCommand}"
                         FontFamily="OpenSansRegular"
                         FontSize="16"
                         HorizontalOptions="EndAndExpand"
-                        Text="Regiter"
+                        Text="Register"
+                        TextColor="Black"
                         VerticalOptions="EndAndExpand" />
                 </StackLayout>
             </StackLayout>

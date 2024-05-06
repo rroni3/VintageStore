@@ -17,6 +17,7 @@ namespace VintageStore
             Routing.RegisterRoute("ProfilePage", typeof (ProfilePage));
             Routing.RegisterRoute("AboutPage", typeof(AboutPage));
             Routing.RegisterRoute("EnvironmentalPage", typeof(EnvironmentalPage));
+            Routing.RegisterRoute("AdminPage", typeof(AdminPage));
             Routing.RegisterRoute("LogOutPage", typeof(LogOutPage));
             
           
@@ -30,5 +31,7 @@ namespace VintageStore
 
             await Shell.Current.GoToAsync("///MainPage");
         }
+
+        
     }
 }

@@ -20,6 +20,8 @@
                 <Setter Property="FontAutoScalingEnabled" Value="True" />
                 <Setter Property="FontSize" Value="10" />
                 <Setter Property="BackgroundColor" Value="Beige" />
+                <Setter Property="TextColor" Value="Black"       
+                        />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
