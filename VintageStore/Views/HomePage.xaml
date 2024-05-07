@@ -111,8 +111,17 @@
                                 FontAttributes="Bold"
                                 FontSize="Small"
                                 Text="{Binding Name}"
-                                TextColor="Beige" />
+                                TextColor="Black" />
                             <Image Aspect="AspectFit" Source="{Binding Photo}" />
+
+                            <Label
+                                
+                                FontAttributes="Bold"
+                                FontSize="Small"
+                                Text="{Bindng Price}"
+                                TextColor="Black"
+                                />
+                            
 
 
 
