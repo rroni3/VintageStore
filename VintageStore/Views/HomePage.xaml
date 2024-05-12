@@ -114,13 +114,13 @@
                                 TextColor="Black" />
                             <Image Aspect="AspectFit" Source="{Binding Photo}" />
 
-                            <Label
+                            <!--<Label
                                 
                                 FontAttributes="Bold"
                                 FontSize="Small"
                                 Text="{Bindng Price}"
                                 TextColor="Black"
-                                />
+                                />-->
                             
 
 

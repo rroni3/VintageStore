@@ -34,6 +34,8 @@ namespace VintageStore.Services
             };
 
         }
+
+
         public User GetCurrentUser()
         {
             return logedUser;
@@ -120,43 +122,69 @@ namespace VintageStore.Services
 
         }
 
-        public async Task<bool> AddJewleryAsync(Jewelry j)
+        //public async Task<bool> AddJewleryAsync(Jewelry j)
+        //{
+        //    try
+        //    {
+        //        var Jewlery = j;
+        //        var jsonContent = JsonSerializer.Serialize(Jewelry, _serializerOptions);
+        //        var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+        //        var response = await _httpClient.PostAsync($"{URL}AddJewlery", content);
+
+        //        switch (response.StatusCode)
+        //        {
+        //            case (HttpStatusCode.OK):
+        //                {
+        //                    jsonContent = await response.Content.ReadAsStringAsync();
+        //                    Jewelry je = JsonSerializer.Deserialize<Jewelry>(jsonContent, _serializerOptions);
+        //                    await Task.Delay(2000);
+        //                    return true;
+
+        //                }
+        //            case (HttpStatusCode.Unauthorized):
+        //                {
+        //                    return false;
+
+
+        //                }
+
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Message);
+        //    }
+        //    return false;
+
+
+        //}
+
+        public async Task<bool> UploadPhoto(FileResult file)
         {
             try
             {
-                var Jewlery = j;
-                var jsonContent = JsonSerializer.Serialize(Jewelry, _serializerOptions);
-                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-                var response = await _httpClient.PostAsync($"{URL}AddJewlery", content);
-
-                switch (response.StatusCode)
+                byte[] bytes;
+                using (MemoryStream ms = new MemoryStream())
                 {
-                    case (HttpStatusCode.OK):
-                        {
-                            jsonContent = await response.Content.ReadAsStringAsync();
-                            Jewelry je = JsonSerializer.Deserialize<Jewelry>(jsonContent, _serializerOptions);
-                            await Task.Delay(2000);
-                            return true;
-
-                        }
-                    case (HttpStatusCode.Unauthorized):
-                        {
-                            return false;
-
-
-                        }
-
+                    var stream = await file.OpenReadAsync();
+                    stream.CopyTo(ms);
+                    bytes = ms.ToArray();
                 }
-
+                var multipartFormDataContent = new MultipartFormDataContent();
+                var content = new ByteArrayContent(bytes);
+                multipartFormDataContent.Add(content, "file", "robot.jpg");
+                var response = await _httpClient.PostAsync($@"{URL}UploadImage?Id=1", multipartFormDataContent);
+                if (response.IsSuccessStatusCode) { return true; }
             }
-            catch (Exception ex)
+            catch(System.Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message   );
             }
             return false;
-
-
         }
+         
+        public async Task<string> GetImage() { return $"{IMAGE_URL}images/"; }
         //add Get returns List of Jewelry from server
         public async Task<List<Jewelry>> GetJewlsAsync()
         {

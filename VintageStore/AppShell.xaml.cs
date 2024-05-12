@@ -3,6 +3,7 @@ using VintageStore.Views;
 
 using VintageStore.Services;
 using VintageStore.Models;
+//using Java.Lang;
 
 namespace VintageStore
 {
@@ -25,7 +26,10 @@ namespace VintageStore
 
         StoreService service;
      
-
+        //private async bool IsAdminCommand()
+        //{
+        //    return User.IsAdmin();
+        //}
         private async void LogOutOnClick(object sender, EventArgs e)
         {
 
