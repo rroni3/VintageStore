@@ -21,7 +21,12 @@ namespace VintageStore.ViewModels
         public string ImageLocation { get => _photo; set {if( value != _photo ) { _photo = value; OnPropertyChange(); } } }
 
         private StoreService service;
-        
+
+        public bool IsAdmin()
+        {
+            if (service.GetCurrentUser().UserName == "admin") { return true; }
+            return false;
+        }
 
         public ICommand AddJewleryCommand { get; protected set; }
         public ICommand UploadPhotoCommand {  get; protected set; }
@@ -67,13 +72,12 @@ namespace VintageStore.ViewModels
 
         public AdminPageViewModel(StoreService storeService)
         {
+
+
             service = storeService;
             AddJewleryCommand = new Command(async =>
             {
-                //try
-                //{
-                //    var response = await service.RegisterAsync(new User() { });
-                //}
+                
 
 
             }

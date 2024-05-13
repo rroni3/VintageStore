@@ -9,6 +9,7 @@ namespace VintageStore
 {
     public partial class AppShell : Shell
     {
+        
         public AppShell()
         {
             InitializeComponent();
@@ -25,7 +26,7 @@ namespace VintageStore
         }
 
         StoreService service;
-     
+
         //private async bool IsAdminCommand()
         //{
         //    return User.IsAdmin();

@@ -122,43 +122,43 @@ namespace VintageStore.Services
 
         }
 
-        //public async Task<bool> AddJewleryAsync(Jewelry j)
-        //{
-        //    try
-        //    {
-        //        var Jewlery = j;
-        //        var jsonContent = JsonSerializer.Serialize(Jewelry, _serializerOptions);
-        //        var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-        //        var response = await _httpClient.PostAsync($"{URL}AddJewlery", content);
+        public async Task<bool> AddJewleryAsync(Jewelry j)
+        {
+            try
+            {
+                var Jewlery = j;
+                var jsonContent = JsonSerializer.Serialize(j, _serializerOptions);
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync($"{URL}AddJewlery", content);
 
-        //        switch (response.StatusCode)
-        //        {
-        //            case (HttpStatusCode.OK):
-        //                {
-        //                    jsonContent = await response.Content.ReadAsStringAsync();
-        //                    Jewelry je = JsonSerializer.Deserialize<Jewelry>(jsonContent, _serializerOptions);
-        //                    await Task.Delay(2000);
-        //                    return true;
+                switch (response.StatusCode)
+                {
+                    case (HttpStatusCode.OK):
+                        {
+                            jsonContent = await response.Content.ReadAsStringAsync();
+                            Jewelry je = JsonSerializer.Deserialize<Jewelry>(jsonContent, _serializerOptions);
+                            await Task.Delay(2000);
+                            return true;
 
-        //                }
-        //            case (HttpStatusCode.Unauthorized):
-        //                {
-        //                    return false;
-
-
-        //                }
-
-        //        }
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex.Message);
-        //    }
-        //    return false;
+                        }
+                    case (HttpStatusCode.Unauthorized):
+                        {
+                            return false;
 
 
-        //}
+                        }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+
+
+        }
 
         public async Task<bool> UploadPhoto(FileResult file)
         {
@@ -267,41 +267,41 @@ namespace VintageStore.Services
             return null;
         }
 
-        public async Task<User> GetUserAsync(int userId)
-        {
-            try
-            {
+        //public async Task<User> GetUserAsync(int userId)
+        //{
+        //    try
+        //    {
 
 
-                var response = await _httpClient.GetAsync($"{URL}GetUser");
+        //        var response = await _httpClient.GetAsync($"{URL}GetUser");
 
-                switch (response.StatusCode)
-                {
-                    case (HttpStatusCode.OK):
-                        {
-                            var jsonContent = await response.Content.ReadAsStringAsync();
-                            User u = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions);
+        //        switch (response.StatusCode)
+        //        {
+        //            case (HttpStatusCode.OK):
+        //                {
+        //                    var jsonContent = await response.Content.ReadAsStringAsync();
+        //                    User u = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions);
                             
-                            await Task.Delay(2000);
-                            return u;
+        //                    await Task.Delay(2000);
+        //                    return u;
 
-                        }
-                    case (HttpStatusCode.Unauthorized):
-                        {
-                            return null;
+        //                }
+        //            case (HttpStatusCode.Unauthorized):
+        //                {
+        //                    return null;
 
 
-                        }
+        //                }
 
-                }
+        //        }
 
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            return null;
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Message);
+        //    }
+        //    return null;
+        //}
 
         public async Task<bool> AddOrder(Order o)
         {
@@ -322,7 +322,7 @@ namespace VintageStore.Services
                         }
                     default:
                         {
-                            //
+                            
                             return false;
 
 

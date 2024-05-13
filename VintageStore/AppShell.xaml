@@ -39,7 +39,7 @@
             <ShellContent ContentTemplate="{DataTemplate views:HomePage}" Route="HomePage" />
         </Tab>
     </FlyoutItem>
-    <FlyoutItem Title="Admin" Icon="adminpage.jpg" IsVisible="{Binding }">
+    <FlyoutItem Title="Admin" Icon="adminpage.jpg">
         <Tab>
             
             <ShellContent ContentTemplate="{DataTemplate views:AdminPage}" Route="AdminPage" />

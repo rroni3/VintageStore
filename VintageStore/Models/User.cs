@@ -23,7 +23,7 @@ namespace VintageStore.Models
 
         public bool IsAdmin()
         {
-            return Id == 3;
+            return UserName=="Admin";
         }
 
     }
