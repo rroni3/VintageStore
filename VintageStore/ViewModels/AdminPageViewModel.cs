@@ -30,7 +30,7 @@ namespace VintageStore.ViewModels
 
         public bool IsAdmin()
         {
-            if (service.GetCurrentUser().UserName == "admin") { return true; }
+            if (service.GetCurrentUser().UserName == "Admin") { return true; }
             return false;
         }
 

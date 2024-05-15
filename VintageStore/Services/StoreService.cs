@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using VintageStore.Models;
 using Microsoft.Extensions.Logging;
 using static System.Net.WebRequestMethods;
+using Microsoft.Maui.Controls;
 
 namespace VintageStore.Services
 {
@@ -233,23 +234,37 @@ namespace VintageStore.Services
             {
 
 
-                var response = await _httpClient.GetAsync($"{URL}GetOrders");
+                var response = await _httpClient.GetAsync($"{URL}GetOrders?Id={userId}");
 
                 switch (response.StatusCode)
                 {
                     case (HttpStatusCode.OK):
                         {
-                            var jsonContent = await response.Content.ReadAsStringAsync();
-                            List<Order> o = JsonSerializer.Deserialize<List<Order>>(jsonContent, _serializerOptions);
-                            //if (o != null && o.Count > 0)
-                            //    foreach (var item in o)
-                            //    {
-                            //        item.Photo = IMAGE_URL + item.Photo;
-                            //    }
-                            await Task.Delay(2000);
-                            return o;
+                            
 
-                        }
+                                var jsonContent = await response.Content.ReadAsStringAsync();
+                                List<Order> orders = JsonSerializer.Deserialize<List<Order>>(jsonContent, _serializerOptions);
+                            if (orders != null && orders.Count > 0)
+                                foreach (var item in orders)
+                                {
+                                    if (item.OrderItems.Count > 0)
+                                    {
+                                        foreach (var item2 in item.OrderItems)
+                                        {
+                                            item2.Photo = IMAGE_URL + item2.Photo;
+                                        }
+                                    }
+
+                                }
+
+                                await Task.Delay(2000);
+                                return orders;
+
+                            }
+                            
+                       
+
+
                     case (HttpStatusCode.Unauthorized):
                         {
                             return null;
@@ -267,41 +282,6 @@ namespace VintageStore.Services
             return null;
         }
 
-        //public async Task<User> GetUserAsync(int userId)
-        //{
-        //    try
-        //    {
-
-
-        //        var response = await _httpClient.GetAsync($"{URL}GetUser");
-
-        //        switch (response.StatusCode)
-        //        {
-        //            case (HttpStatusCode.OK):
-        //                {
-        //                    var jsonContent = await response.Content.ReadAsStringAsync();
-        //                    User u = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions);
-                            
-        //                    await Task.Delay(2000);
-        //                    return u;
-
-        //                }
-        //            case (HttpStatusCode.Unauthorized):
-        //                {
-        //                    return null;
-
-
-        //                }
-
-        //        }
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex.Message);
-        //    }
-        //    return null;
-        //}
 
         public async Task<bool> AddOrder(Order o)
         {

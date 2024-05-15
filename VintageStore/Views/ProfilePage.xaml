@@ -11,7 +11,7 @@
        
       ColumnDefinitions="*,*"
      ColumnSpacing="2"
-      RowDefinitions="*,*,*,*,*,*,*">
+      RowDefinitions="*,*,*,*,*,*,*,*">
     <Label
         Grid.Row="0"
         Grid.ColumnSpan="15"
@@ -109,10 +109,18 @@
      Text="{Binding _currentu.UserPswd}"
      TextColor="Black" />
 
-
+        <Label
+             Grid.Row="6"
+           
+             Grid.ColumnSpan="5"
+           FontAttributes="Bold"
+            FontSize="Medium"
+           Text="Your Orders:"
+           TextColor="Black" />
+            
         <CollectionView
     x:Name="CollectionView"
-    Grid.Row="6"
+    Grid.Row="7"
     Grid.ColumnSpan="5"
     EmptyView="No Items:("
     ItemsLayout="VerticalGrid, 3"

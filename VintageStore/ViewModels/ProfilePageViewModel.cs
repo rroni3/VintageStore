@@ -21,6 +21,8 @@ namespace VintageStore.ViewModels
         public ProfilePageViewModel(StoreService storeService)
     {
         this.storeService = storeService;
+            LoadUser();
+            LoadOrders();
     }
 
     public async Task LoadUser()
@@ -34,7 +36,7 @@ namespace VintageStore.ViewModels
         }
     }
 
-        public async Task Orders()
+        public async Task LoadOrders()
         {
             orders.Clear();
             jewlerys.Clear();
