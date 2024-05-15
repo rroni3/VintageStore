@@ -1,9 +1,14 @@
+using VintageStore.ViewModels;
+
 namespace VintageStore.Views;
 
 public partial class ProfilePage : ContentPage
 {
-	public ProfilePage()
+	public ProfilePage(ProfilePageViewModel vm)
 	{
-		InitializeComponent();
-	}
+        InitializeComponent();
+        this.BindingContext = vm;
+
+
+    }
 }

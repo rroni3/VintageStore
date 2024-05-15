@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VintageStore.Views.ProfilePage">
+             x:Class="VintageStore.Views.ProfilePage"
+             xmlns:models="clr-namespace:VintageStore.Models"
+             xmlns:viewmodels="clr-namespace:VintageStore.ViewModels"
+             x:DataType="viewmodels:ProfilePageViewModel">
+
+    <!--ItemsSource="{Binding _currentu}"-->
     <Grid
+       
       ColumnDefinitions="*,*"
      ColumnSpacing="2"
-      RowDefinitions="*,*,*,*,*,*">
+      RowDefinitions="*,*,*,*,*,*,*">
     <Label
         Grid.Row="0"
         Grid.ColumnSpan="15"
@@ -33,7 +39,7 @@
        Grid.Column="1"
          FontAttributes="Bold"
          FontSize="Small"
-         Text="{Binding FirstName}"
+         Text="{Binding _currentu.FirstName}"
          TextColor="Black" />
 
 
@@ -51,7 +57,7 @@
    Grid.Column="1"
      FontAttributes="Bold"
      FontSize="Small"
-     Text="{Binding LastName}"
+     Text="{Binding  _currentu.LastName}"
      TextColor="Black" />
 
     <Label
@@ -68,7 +74,7 @@
    Grid.Column="1"
      FontAttributes="Bold"
      FontSize="Small"
-     Text="{Binding Email}"
+     Text="{Binding  _currentu.Email}"
      TextColor="Black" />
     <Label
     Grid.Row="4"
@@ -84,7 +90,7 @@
    Grid.Column="1"
      FontAttributes="Bold"
      FontSize="Small"
-     Text="{Binding UserName}"
+     Text="{Binding _currentu.UserName}"
      TextColor="Black" />
     <Label
     Grid.Row="5"
@@ -100,9 +106,75 @@
    Grid.Column="1"
      FontAttributes="Bold"
      FontSize="Small"
-     Text="{Binding UserPswd}"
+     Text="{Binding _currentu.UserPswd}"
      TextColor="Black" />
 
+
+        <CollectionView
+    x:Name="CollectionView"
+    Grid.Row="6"
+    Grid.ColumnSpan="5"
+    EmptyView="No Items:("
+    ItemsLayout="VerticalGrid, 3"
+    ItemsSource="{Binding orders}"
+    
+    >
+
+            <CollectionView.ItemTemplate>
+
+                <DataTemplate x:DataType="models:Order">
+
+
+
+                    
+                    <VerticalStackLayout
+                HeightRequest="200"
+                Spacing="7"
+                VerticalOptions="Center">
+
+                        <Label
+                    FontAttributes="Bold"
+                    FontSize="Small"
+                    Text="{Binding Date}"
+                    TextColor="Black" />
+
+                        <CollectionView
+                     x:Name="CollectionView2"
+                     
+                     EmptyView="No Items:("
+                     ItemsLayout="VerticalGrid, 3"
+                     ItemsSource="{Binding OrderItems}">
+                            <CollectionView.ItemTemplate>
+
+                            <DataTemplate x:DataType="models:Jewelry">
+
+                                <Image Aspect="AspectFit" Source="{Binding Photo}" 
+                       />
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+        <Label
+                    
+                    FontAttributes="Bold"
+                    FontSize="Small"
+                    Text="{Binding TotalPrice}"
+                    TextColor="Black"
+                    />
+
+
+
+
+
+
+                    </VerticalStackLayout>
+
+
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </Grid>
 
 

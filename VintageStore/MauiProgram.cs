@@ -27,6 +27,12 @@ namespace VintageStore
             builder.Services.AddSingleton<RegisterPage>();
             builder.Services.AddSingleton<HomePage>();
             builder.Services.AddSingleton<HomePageViewModel>();
+            builder.Services.AddSingleton<ProfilePageViewModel>();  
+            builder.Services.AddSingleton<ProfilePage>();
+            builder.Services.AddSingleton<AdminPageViewModel>();
+            builder.Services.AddSingleton<AdminPage>();
+
+
 
 
 

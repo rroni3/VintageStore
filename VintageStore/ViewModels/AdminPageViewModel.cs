@@ -5,8 +5,10 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using VintageStore.Models;
+
 using VintageStore.Services;
+using VintageStore.Models;
+using System.Collections.ObjectModel;
 
 namespace VintageStore.ViewModels
 {
@@ -17,9 +19,13 @@ namespace VintageStore.ViewModels
         private Category _category;//קטגוריה
         private string _photo;//תמונה
         private int _price;//*מחיר*/
+        public ObservableCollection<Category> categorieoptions =new ObservableCollection<Category>();
+        
+            
 
         public string ImageLocation { get => _photo; set {if( value != _photo ) { _photo = value; OnPropertyChange(); } } }
 
+        
         private StoreService service;
 
         public bool IsAdmin()
@@ -30,6 +36,7 @@ namespace VintageStore.ViewModels
 
         public ICommand AddJewleryCommand { get; protected set; }
         public ICommand UploadPhotoCommand {  get; protected set; }
+        public ICommand AddPhotoCommand { get; protected set; }
 
 
 
@@ -73,8 +80,19 @@ namespace VintageStore.ViewModels
         public AdminPageViewModel(StoreService storeService)
         {
 
+            categorieoptions.Add(new Category() { Id = 1, Name = "Necklace" });
+            categorieoptions.Add(new Category() { Id = 2, Name = "Braclet" });
+            categorieoptions.Add(new Category() { Id = 3, Name = "Earrings" });
+            categorieoptions.Add(new Category() { Id = 4, Name = "Rings" });
 
             service = storeService;
+            if(!IsAdmin()) 
+            {
+                Shell.Current.DisplayAlert("Admin Page", "אין לך הרשאה לעמוד המנהל", "ok");
+
+
+                Shell.Current.GoToAsync("///HomePage");
+            }
             AddJewleryCommand = new Command(async =>
             {
                 
@@ -86,8 +104,14 @@ namespace VintageStore.ViewModels
 
             AddJewleryCommand = new Command(AddJewlery, EnableAddJewlery);
             UploadPhotoCommand = new Command(async () => { await Shell.Current.DisplayAlert("g", "g", "ok"); });
+            AddPhotoCommand = new Command(async () => { AddPhoto(); });
         }
 
+        private async void AddPhoto()
+        {
+            FileResult photo = await MediaPicker.Default.PickPhotoAsync();
+            await Upload(photo);
+        }
         private async Task Upload(FileResult file)
         {
             try
@@ -118,6 +142,7 @@ namespace VintageStore.ViewModels
             }
             return false;
         }
+
         private async void AddJewlery()
         {
 

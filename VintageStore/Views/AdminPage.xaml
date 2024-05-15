@@ -28,27 +28,29 @@
         FontFamily="OpenSansRegular"
         FontSize="16"
         Text="Category (1=Neklace, 2=Braclet, 3=Earrings, 4=Rings" />
-        <Grid Margin="0,5" RowDefinitions="auto,auto">
+        
 
-            <Entry
-            Margin="5,0"
-            BackgroundColor="Transparent"
-            IsPassword="True"
-            Placeholder="Enter Category Number"
-            PlaceholderColor="Gray"
-            Text="{Binding Category}"
-            TextColor="Black" />
-        </Grid>
-        <Label
-        FontFamily="OpenSansRegular"
-        FontSize="16"
-        Text="Photo" />
+            <Picker 
+               x:Name="picker"
+               Title="Select a Category" 
+                ItemsSource="{Binding categorieoptions}"
+                SelectedItem="{Binding category}"
+                />
+        
+        
 
-        <Grid Margin="0,5" RowDefinitions="auto,auto">
+        
 
-            <Entry Placeholder="Enter Photo " Text="{Binding Photo}" />
+            <Button
+                Text="Select Photo"
+                Margin="0,10"
+                Command="{Binding AddPhotoCommand}"
+                FontFamily="OpenSansBold"
+                BackgroundColor="Beige"
+                TextColor="Black"/>
+                
 
-        </Grid>
+        
 
         <Label
         FontFamily="OpenSansRegular"

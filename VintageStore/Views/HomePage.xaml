@@ -104,7 +104,7 @@
                                     Source="{Binding Photo}" />-->
                         <VerticalStackLayout
                             HeightRequest="200"
-                            Spacing="5"
+                            Spacing="7"
                             VerticalOptions="Center">
 
                             <Label
@@ -112,7 +112,9 @@
                                 FontSize="Small"
                                 Text="{Binding Name}"
                                 TextColor="Black" />
-                            <Image Aspect="AspectFit" Source="{Binding Photo}" />
+                            <Image Aspect="AspectFit" Source="{Binding Photo}" 
+                                   WidthRequest="100"
+                                   HeightRequest="150"/>
 
                             <Label
                                 
