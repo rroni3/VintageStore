@@ -100,7 +100,9 @@ namespace VintageStore.Services
                         {
                             jsonContent = await response.Content.ReadAsStringAsync();
                             User us = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions);
+                            logedUser = us;
                             await Task.Delay(2000);
+                            
                             return true;
 
                         }

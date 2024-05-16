@@ -126,7 +126,7 @@ namespace VintageStore.ViewModels
                 //{
                 //    var response = await service.RegisterAsync(new User() { });
                 //}
-
+                
 
             }
             
@@ -138,21 +138,27 @@ namespace VintageStore.ViewModels
             RegisterCommand = new Command(Register,EnableRegister);
         }
 
-        private bool EnableRegister()
+        public bool EnableRegister()
         {
         return !(string.IsNullOrEmpty(FirstName)||string.IsNullOrEmpty(LastName)||string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(UserName));
         }
 
         private async void Register()
         {
-            
+
             //ToDo
+            //if (!EnableRegister)
+            //{
+            //    Shell.Current.DisplayAlert("register", "ההרשמה בוצעה בהצלחה", "ok");
+            //    return ;
+            //}
             User u= new User() { Email = Email, FirstName= FirstName, LastName=LastName,  UserPswd=Password, UserName = UserName };
 
           bool result= await service.RegisterAsync(u);
             if(result==true)
             {
                 await Shell.Current.GoToAsync("///HomePage");
+                Shell.Current.DisplayAlert("register", "ההרשמה בוצעה בהצלחה", "ok");
             }
         }
 

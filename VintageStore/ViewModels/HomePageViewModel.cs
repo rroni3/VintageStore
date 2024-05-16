@@ -101,6 +101,7 @@ namespace VintageStore.ViewModels
             Order newOrder = new Order() { Date = DateTime.Now,  OrderItems=jewels, TotalPrice = totalp, User = storeService.GetCurrentUser() };
             await storeService.AddOrder(newOrder);
             SelectedJewls.Clear();
+            Shell.Current.DisplayAlert("order", "ההזמנה בוצעה בהצלחה", "ok");
         }
     }
 }
