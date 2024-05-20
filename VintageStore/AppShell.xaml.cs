@@ -21,8 +21,9 @@ namespace VintageStore
             Routing.RegisterRoute("EnvironmentalPage", typeof(EnvironmentalPage));
             Routing.RegisterRoute("AdminPage", typeof(AdminPage));
             Routing.RegisterRoute("LogOutPage", typeof(LogOutPage));
+            Routing.RegisterRoute("ItemsPage", typeof(ItemsPage));
             
-          
+
         }
 
         StoreService service;

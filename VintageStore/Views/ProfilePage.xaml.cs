@@ -11,4 +11,11 @@ public partial class ProfilePage : ContentPage
 
 
     }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        var vm=this.BindingContext as ProfilePageViewModel;
+        await vm.LoadOrders();  
+    }
 }

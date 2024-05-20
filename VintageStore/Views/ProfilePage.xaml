@@ -1,191 +1,168 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VintageStore.Views.ProfilePage"
-             xmlns:models="clr-namespace:VintageStore.Models"
-             xmlns:viewmodels="clr-namespace:VintageStore.ViewModels"
-             x:DataType="viewmodels:ProfilePageViewModel">
+<ContentPage
+    x:Class="VintageStore.Views.ProfilePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:VintageStore.Models"
+    xmlns:viewmodels="clr-namespace:VintageStore.ViewModels"
+    x:DataType="viewmodels:ProfilePageViewModel">
 
-    <!--ItemsSource="{Binding _currentu}"-->
-    <Grid
-       
-      ColumnDefinitions="*,*"
-     ColumnSpacing="2"
-      RowDefinitions="*,*,*,*,*,*,*,*">
-    <Label
-        Grid.Row="0"
-        Grid.ColumnSpan="15"
-
-     HorizontalOptions="Center"
-
-      TextColor="Beige"
-       VerticalOptions="Center"
-        FontAttributes="Bold"
-        FontSize="Large"
-        Text="Welcome To Your Profile:"
-        
-    />
-    <Label
-        Grid.Row="1"
-        Grid.Column="0"
-        FontAttributes="Bold"
-        FontSize="Small"
-        Text="Hello! "
-        TextColor="Black"
-        
-        />
-    <Label
-        Grid.Row="1"
-       Grid.Column="1"
-         FontAttributes="Bold"
-         FontSize="Small"
-         Text="{Binding _currentu.FirstName}"
-         TextColor="Black" />
+    <!--  ItemsSource="{Binding _currentu}"  -->
+    <ScrollView>
+        <Grid
+            ColumnDefinitions="*,*"
+            ColumnSpacing="2"
+            RowDefinitions="*,*,*,*,*,*,*,*">
+            <Label
+                Grid.Row="0"
+                Grid.ColumnSpan="15"
+                FontAttributes="Bold"
+                FontSize="Large"
+                HorizontalOptions="Center"
+                Text="Welcome To Your Profile:"
+                TextColor="Beige"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="0"
+                FontAttributes="Bold"
+                FontSize="Small"
+                Text="Hello! "
+                TextColor="Black" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="1"
+                FontAttributes="Bold"
+                FontSize="Small"
+                Text="{Binding _currentu.FirstName}"
+                TextColor="Black" />
 
 
-    <Label
-    Grid.Row="2"
-    Grid.Column="0"
-    FontAttributes="Bold"
-    FontSize="Small"
-    Text="Last Name; "
-    TextColor="Black"
-    
-    />
-    <Label
-    Grid.Row="2"
-   Grid.Column="1"
-     FontAttributes="Bold"
-     FontSize="Small"
-     Text="{Binding  _currentu.LastName}"
-     TextColor="Black" />
+            <Label
+                Grid.Row="2"
+                Grid.Column="0"
+                FontAttributes="Bold"
+                FontSize="Small"
+                Text="Last Name; "
+                TextColor="Black" />
+            <Label
+                Grid.Row="2"
+                Grid.Column="1"
+                FontAttributes="Bold"
+                FontSize="Small"
+                Text="{Binding _currentu.LastName}"
+                TextColor="Black" />
 
-    <Label
-    Grid.Row="3"
-    Grid.Column="0"
-    FontAttributes="Bold"
-    FontSize="Small"
-    Text="Email: "
-    TextColor="Black"
-    
-    />
-    <Label
-    Grid.Row="3"
-   Grid.Column="1"
-     FontAttributes="Bold"
-     FontSize="Small"
-     Text="{Binding  _currentu.Email}"
-     TextColor="Black" />
-    <Label
-    Grid.Row="4"
-    Grid.Column="0"
-    FontAttributes="Bold"
-    FontSize="Small"
-    Text="User Name; "
-    TextColor="Black"
-    
-    />
-    <Label
-    Grid.Row="4"
-   Grid.Column="1"
-     FontAttributes="Bold"
-     FontSize="Small"
-     Text="{Binding _currentu.UserName}"
-     TextColor="Black" />
-    <Label
-    Grid.Row="5"
-    Grid.Column="0"
-    FontAttributes="Bold"
-    FontSize="Small"
-    Text="User Passward: "
-    TextColor="Black"
-    
-    />
-    <Label
-    Grid.Row="5"
-   Grid.Column="1"
-     FontAttributes="Bold"
-     FontSize="Small"
-     Text="{Binding _currentu.UserPswd}"
-     TextColor="Black" />
+            <Label
+                Grid.Row="3"
+                Grid.Column="0"
+                FontAttributes="Bold"
+                FontSize="Small"
+                Text="Email: "
+                TextColor="Black" />
+            <Label
+                Grid.Row="3"
+                Grid.Column="1"
+                FontAttributes="Bold"
+                FontSize="Small"
+                Text="{Binding _currentu.Email}"
+                TextColor="Black" />
+            <Label
+                Grid.Row="4"
+                Grid.Column="0"
+                FontAttributes="Bold"
+                FontSize="Small"
+                Text="User Name; "
+                TextColor="Black" />
+            <Label
+                Grid.Row="4"
+                Grid.Column="1"
+                FontAttributes="Bold"
+                FontSize="Small"
+                Text="{Binding _currentu.UserName}"
+                TextColor="Black" />
+            <Label
+                Grid.Row="5"
+                Grid.Column="0"
+                FontAttributes="Bold"
+                FontSize="Small"
+                Text="User Passward: "
+                TextColor="Black" />
+            <Label
+                Grid.Row="5"
+                Grid.Column="1"
+                FontAttributes="Bold"
+                FontSize="Small"
+                Text="{Binding _currentu.UserPswd}"
+                TextColor="Black" />
 
-        <Label
-             Grid.Row="6"
-           
-             Grid.ColumnSpan="5"
-           FontAttributes="Bold"
-            FontSize="Medium"
-           Text="Your Orders:"
-           TextColor="Black" />
-            
-        <CollectionView
-    x:Name="CollectionView"
-    Grid.Row="7"
-    Grid.ColumnSpan="5"
-    EmptyView="No Items:("
-    ItemsLayout="VerticalGrid, 3"
-    ItemsSource="{Binding orders}"
-    
-    >
+            <Label
+                Grid.Row="6"
+                Grid.ColumnSpan="5"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                Text="Your Orders:"
+                TextColor="Black" />
 
-            <CollectionView.ItemTemplate>
+            <CollectionView
+                x:Name="CollectionView"
+                Grid.Row="7"
+                Grid.ColumnSpan="5"
+                EmptyView="No Items:("
+                ItemsLayout="VerticalGrid, 3"
+                ItemsSource="{Binding orders}">
 
-                <DataTemplate x:DataType="models:Order">
+                <CollectionView.ItemTemplate>
+
+                    <DataTemplate x:DataType="models:Order">
 
 
 
-                    
-                    <VerticalStackLayout
-                HeightRequest="200"
-                Spacing="7"
-                VerticalOptions="Center">
+                        
+                        <VerticalStackLayout
+                            HeightRequest="200"
+                            Spacing="7"
+                            VerticalOptions="Center">
 
-                        <Label
-                    FontAttributes="Bold"
-                    FontSize="Small"
-                    Text="{Binding Date}"
-                    TextColor="Black" />
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="Small"
+                                Text="{Binding Date}"
+                                TextColor="Black" />
 
-                        <CollectionView
-                     x:Name="CollectionView2"
-                     
-                     EmptyView="No Items:("
-                     ItemsLayout="VerticalGrid, 3"
-                     ItemsSource="{Binding OrderItems}">
-                            <CollectionView.ItemTemplate>
+                           
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="Small"
+                                Text="{Binding TotalPrice}"
+                                TextColor="Black" />
 
-                            <DataTemplate x:DataType="models:Jewelry">
-
-                                <Image Aspect="AspectFit" Source="{Binding Photo}" 
-                       />
-
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-                    </CollectionView>
-
-        <Label
-                    
-                    FontAttributes="Bold"
-                    FontSize="Small"
-                    Text="{Binding TotalPrice}"
-                    TextColor="Black"
-                    />
+                            <!--<Button
+   Margin="0,15"
+   BackgroundColor="Beige"
+   Command="{Binding ShowItemsCommand }"
+   FontFamily="OpenSansBold"
+   TextColor="Black"
+   Text="View Items In Order" />-->
 
 
 
 
 
 
-                    </VerticalStackLayout>
+                        </VerticalStackLayout>
+
+
+                    </DataTemplate>
+
+
+                </CollectionView.ItemTemplate>
+
+
+            </CollectionView>
+        </Grid>
 
 
 
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </Grid>
-
-
-
-
+    </ScrollView>
 </ContentPage>

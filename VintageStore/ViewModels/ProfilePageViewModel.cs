@@ -5,8 +5,11 @@ using System.Linq;
 using System.Net.Security;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using VintageStore.Models;
 using VintageStore.Services;
+
+using VintageStore.Views;
 
 namespace VintageStore.ViewModels
 {
@@ -18,23 +21,20 @@ namespace VintageStore.ViewModels
         public ObservableCollection<Jewelry> jewlerys { get; set; } = new ObservableCollection<Jewelry>();
         private StoreService storeService;
         private List<Order> _FullList;
+        public ICommand ShowItemsCommand {  get; set; }
         public ProfilePageViewModel(StoreService storeService)
     {
         this.storeService = storeService;
-            LoadUser();
-            LoadOrders();
-    }
-
-    public async Task LoadUser()
-    {
-
             _currentu = storeService.GetCurrentUser();
-        if (_currentu == null)
-        {
+            ShowItemsCommand = new Command(async () =>
+            {
+                await Shell.Current.GoToAsync("ItemsPage");
 
-            await AppShell.Current.DisplayAlert("error", "error", "Ok");
+            });
+
         }
-    }
+
+   
 
         public async Task LoadOrders()
         {
@@ -56,6 +56,7 @@ namespace VintageStore.ViewModels
             
            
         }
+        
 
 
 }

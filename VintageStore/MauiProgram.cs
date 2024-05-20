@@ -31,7 +31,8 @@ namespace VintageStore
             builder.Services.AddSingleton<ProfilePage>();
             builder.Services.AddSingleton<AdminPageViewModel>();
             builder.Services.AddSingleton<AdminPage>();
-
+            builder.Services.AddSingleton<ItemsPage>();
+            builder.Services.AddSingleton<ItemsPageViewModel>();
 
 
 
