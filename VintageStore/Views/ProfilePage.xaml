@@ -114,7 +114,7 @@
 
                 <CollectionView.ItemTemplate>
 
-                    <DataTemplate x:DataType="models:Order">
+                    <DataTemplate x:DataType="models:Order" >
 
 
 
@@ -154,6 +154,17 @@
 
 
                     </DataTemplate>
+                    <!--<DataTemplate x:DataType="VieweModel">
+
+                        <Button
+Margin="0,15"
+BackgroundColor="Beige"
+Command="{Binding ShowItemsCommand }"
+FontFamily="OpenSansBold"
+TextColor="Black"
+Text="View Items In Order" />
+
+                    </DataTemplate>-->
 
 
                 </CollectionView.ItemTemplate>

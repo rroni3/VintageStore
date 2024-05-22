@@ -11,6 +11,7 @@ using VintageStore.Models;
 using Microsoft.Extensions.Logging;
 using static System.Net.WebRequestMethods;
 using Microsoft.Maui.Controls;
+using System.Net.Http.Headers;
 
 namespace VintageStore.Services
 {
@@ -163,32 +164,34 @@ namespace VintageStore.Services
 
         }
 
-        public async Task<bool> UploadPhoto(FileResult file)
+        internal async Task<string> UploadImage(FileResult photo)
         {
-            try
+            byte[] streamBytes;
+            //take the photo and make it a byte array
+            using (var stream = await photo.OpenReadAsync())
+            using (var memoryStream = new MemoryStream())
             {
-                byte[] bytes;
-                using (MemoryStream ms = new MemoryStream())
+                await stream.CopyToAsync(memoryStream);
+                streamBytes = memoryStream.ToArray();
+            }
+
+            using (var content = new MultipartFormDataContent())
+            {
+                var fileContent = new ByteArrayContent(streamBytes);
+                fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg");
+                //"file" --זהה לשם הפרמטר של הפעולה בשרת שמייצגת את הקובץ
+                content.Add(fileContent, "file", photo.FileName);
+                var response = await client.PostAsync(@$"{this.baseUrl}UploadProfile/talsi@talsi.com", content);
+                if (response.IsSuccessStatusCode)
                 {
-                    var stream = await file.OpenReadAsync();
-                    stream.CopyTo(ms);
-                    bytes = ms.ToArray();
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    ImageResponse res = JsonSerializer.Deserialize<ImageResponse>(jsonContent, jsonSerializerOptions);
+                    return res.FileName;
                 }
-                var multipartFormDataContent = new MultipartFormDataContent();
-                var content = new ByteArrayContent(bytes);
-                multipartFormDataContent.Add(content, "file", "robot.jpg");
-                var response = await _httpClient.PostAsync($@"{URL}UploadImage?Id=1", multipartFormDataContent);
-                if (response.IsSuccessStatusCode) { return true; }
             }
-            catch(System.Exception ex)
-            {
-                Console.WriteLine(ex.Message   );
-            }
-            return false;
+            return null;
         }
-         
-        public async Task<string> GetImage() { return $"{IMAGE_URL}images/"; }
-        //add Get returns List of Jewelry from server
+        
         public async Task<List<Jewelry>> GetJewlsAsync()
         {
             try
@@ -265,6 +268,58 @@ namespace VintageStore.Services
                             }
                             
                        
+
+
+                    case (HttpStatusCode.Unauthorized):
+                        {
+                            return null;
+
+
+                        }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+        }
+        public async Task<List<Jewelry>> GetOrderJewleriesAsync(int orderId)
+        {
+            try
+            {
+
+
+                var response = await _httpClient.GetAsync($"{URL}GetOrderJewleries?Id={orderId}");
+
+                switch (response.StatusCode)
+                {
+                    case (HttpStatusCode.OK):
+                        {
+
+
+                            var jsonContent = await response.Content.ReadAsStringAsync();
+                            List<Jewelry> jewelries = JsonSerializer.Deserialize<List<Jewelry>>(jsonContent, _serializerOptions);
+                            if (jewelries != null && jewelries.Count > 0)
+                                foreach (var item in  jewelries)
+                                {
+                                    if (item != null)
+                                    {
+                                        item.Photo = IMAGE_URL + item.Photo;
+                                    }
+                                       
+                                        
+
+                                }
+
+                            await Task.Delay(2000);
+                            return jewelries;
+
+                        }
+
+
 
 
                     case (HttpStatusCode.Unauthorized):

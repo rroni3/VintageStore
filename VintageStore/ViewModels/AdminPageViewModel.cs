@@ -9,6 +9,7 @@ using System.Windows.Input;
 using VintageStore.Services;
 using VintageStore.Models;
 using System.Collections.ObjectModel;
+using VintageStore.Views;
 
 namespace VintageStore.ViewModels
 {
@@ -104,33 +105,51 @@ namespace VintageStore.ViewModels
 
             AddJewleryCommand = new Command(AddJewlery, EnableAddJewlery);
             UploadPhotoCommand = new Command(async () => { await Shell.Current.DisplayAlert("g", "g", "ok"); });
-            AddPhotoCommand = new Command(async () => { AddPhoto(); });
+            AddPhotoCommand = new Command(async () => { UploadImage(); });
         }
 
-        private async void AddPhoto()
+        
+        private async Task UploadImage()
         {
-            FileResult photo = await MediaPicker.Default.PickPhotoAsync();
-            await Upload(photo);
+            if (MediaPicker.Default.IsCaptureSupported)
+            {
+                FileResult photo = await MediaPicker.Default.PickPhotoAsync();
+
+                if (photo != null)
+                {
+                    // save the file into local storage
+
+                    //string localFilePath = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
+
+                    //using Stream sourceStream = await photo.OpenReadAsync();
+                    //using FileStream localFileStream = File.OpenWrite(localFilePath);
+
+                    //await sourceStream.CopyToAsync(localFileStream);
+                    string filename = await UploadProfileImage(photo);
+                    //service.LoggedInUser.Image = filename;
+                    
+
+                    Image = $"{StoreService.ImageUrl}{service.LoggedInUser.Image}";
+                }
+
+            }
         }
-        private async Task Upload(FileResult file)
+
+        private async Task<string> UploadProfileImage(FileResult photo)
         {
             try
             {
-                bool success = await service.UploadPhoto(file);
-                if (success)
-                {
-                    var u = JsonSerializer.Deserialize<Jewelry>(await SecureStorage.Default.GetAsync("NewJewlery"));
-                    ImageLocation = await service.GetImage() + $"{u.Id}.jpg";
-                }
-                else
-                    Shell.Current.DisplayAlert("אין קשר לשרת", "לא הצלחתי להעלות את התמונה.נסה שוב", "אישור");
+                string filename = await service.UploadImage(photo);
+                return filename;
             }
             catch (Exception ex) { }
+            return null;
         }
+    
 
-        private bool EnableAddJewlery()
+    private bool EnableAddJewlery()
         {
-            return !(IsNullOrEmpty(_name) ||  IsNullOrEmpty(_category) || IsNullOrEmpty(_photo) || IsNullOrEmpty(_price));
+            return !(IsNullOrEmpty(_name) ||  IsNullOrEmpty(_category)  || IsNullOrEmpty(_price));
         }
 
         private bool IsNullOrEmpty(object o)
@@ -147,9 +166,9 @@ namespace VintageStore.ViewModels
         {
 
 
-            Jewelry j = new Jewelry() { Name = _name, Category = _category, Photo = _photo, Price = _price };
+            Jewelry j = new Jewelry() { Name = _name, Category = _category, Price = _price };
 
-            //bool result = await service.AddJewleryAsync(j);
+            service.AddJewleryAsync(j);
 
         }
 

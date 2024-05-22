@@ -15,8 +15,7 @@ namespace VintageStore.ViewModels
         public ObservableCollection<Jewelry> jewlerys { get; set; } = new ObservableCollection<Jewelry>();
         private StoreService storeService;
         public User _currentu { get; set; }
-        public ObservableCollection<Order> orders { get; set; } = new ObservableCollection<Order>();
-        private List<Order> _FullList;
+      
         public ICommand BackToProfileCommand {  get; set; }
 
 
@@ -29,21 +28,18 @@ namespace VintageStore.ViewModels
 
         }
 
-        public async Task LoadJewleries()
+        public async Task LoadJewleries(int orderId)
         {
             
             jewlerys.Clear();
 
             int id = storeService.GetCurrentUser().Id;
-            _FullList = await storeService.GetOrdersAsync(id);
-            if (_FullList != null)
-                foreach (var item in _FullList)
+            jewlerys = await storeService.GetOrderJewleriesAsync(orderId);
+            if (jewlerys != null)
+                foreach (var item in jewlerys)
                 {
-                    orders.Add(item);
-                    foreach (var item2 in item.OrderItems)
-                    {
-                        jewlerys.Add(item2);
-                    }
+                    jewlerys.Add(item);
+                    
                 }
 
 
