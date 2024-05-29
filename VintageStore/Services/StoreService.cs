@@ -126,7 +126,7 @@ namespace VintageStore.Services
 
         }
 
-        public async Task<bool> AddJewleryAsync(Jewelry j)
+        public async Task<int> AddJewleryAsync(Jewelry j)
         {
             try
             {
@@ -142,12 +142,12 @@ namespace VintageStore.Services
                             jsonContent = await response.Content.ReadAsStringAsync();
                             Jewelry je = JsonSerializer.Deserialize<Jewelry>(jsonContent, _serializerOptions);
                             await Task.Delay(2000);
-                            return true;
+                            return je.Id;
 
                         }
                     case (HttpStatusCode.Unauthorized):
                         {
-                            return false;
+                            return -1;
 
 
                         }
@@ -159,12 +159,12 @@ namespace VintageStore.Services
             {
                 Console.WriteLine(ex.Message);
             }
-            return false;
+            return -1;
 
 
         }
 
-        internal async Task<string> UploadImage(FileResult photo)
+        internal async Task<bool> UploadImage(FileResult photo,int id)
         {
             byte[] streamBytes;
             //take the photo and make it a byte array
@@ -181,15 +181,15 @@ namespace VintageStore.Services
                 fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg");
                 //"file" --זהה לשם הפרמטר של הפעולה בשרת שמייצגת את הקובץ
                 content.Add(fileContent, "file", photo.FileName);
-                var response = await client.PostAsync(@$"{this.baseUrl}UploadProfile/talsi@talsi.com", content);
+                var response = await _httpClient.PostAsync(@$"{URL}UploadProfile/{id}", content);
                 if (response.IsSuccessStatusCode)
                 {
-                    string jsonContent = await response.Content.ReadAsStringAsync();
-                    ImageResponse res = JsonSerializer.Deserialize<ImageResponse>(jsonContent, jsonSerializerOptions);
-                    return res.FileName;
+                    //string jsonContent = await response.Content.ReadAsStringAsync();
+                    //ImageResponse res = JsonSerializer.Deserialize<ImageResponse>(jsonContent, _serializerOptions);
+                    return true;
                 }
             }
-            return null;
+            return false;
         }
         
         public async Task<List<Jewelry>> GetJewlsAsync()

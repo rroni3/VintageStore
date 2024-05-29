@@ -8,10 +8,5 @@ public partial class ItemsPage : ContentPage
 		InitializeComponent();
         this.BindingContext = vm;
     }
-    protected override async void OnAppearing()
-    {
-        base.OnAppearing();
-        var vm = this.BindingContext as ItemsPageViewModel;
-        await vm.LoadJewleries();
-    }
+    
 }

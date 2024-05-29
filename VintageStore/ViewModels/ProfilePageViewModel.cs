@@ -21,14 +21,16 @@ namespace VintageStore.ViewModels
         public ObservableCollection<Jewelry> jewlerys { get; set; } = new ObservableCollection<Jewelry>();
         private StoreService storeService;
         private List<Order> _FullList;
-        public ICommand ShowItemsCommand<Order> {  get; set; }
+        public ICommand ShowItemsCommand {  get; set; }
         public ProfilePageViewModel(StoreService storeService)
     {
         this.storeService = storeService;
             _currentu = storeService.GetCurrentUser();
-            ShowItemsCommand = new Command(async () =>
+            ShowItemsCommand = new Command<Order>(async (o) =>
             {
-                await Shell.Current.GoToAsync("ItemsPage");
+                Dictionary<string, object> dict = new Dictionary<string, object>();
+                dict.Add("orderItems", o);
+                await Shell.Current.GoToAsync("ItemsPage",dict);
 
             });
 

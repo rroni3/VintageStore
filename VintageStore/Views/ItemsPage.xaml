@@ -1,72 +1,66 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VintageStore.Views.ItemsPage"
-             xmlns:viewmodels="clr-namespace:VintageStore.ViewModels"
- xmlns:models="clr-namespace:VintageStore.Models"
-x:DataType="viewmodels:ItemsPageViewModel"
-             
-             Title="ItemsPage">
+<ContentPage
+    x:Class="VintageStore.Views.ItemsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:VintageStore.Models"
+    xmlns:viewmodels="clr-namespace:VintageStore.ViewModels"
+    Title="ItemsPage"
+    x:DataType="viewmodels:ItemsPageViewModel">
     <VerticalStackLayout>
         <Button
-     Command="{Binding BackToProfileCommand}"
-     FontFamily="OpenSansRegular"
-     FontSize="16"
-     HorizontalOptions="EndAndExpand"
-     Text="Back To Profile"
-     VerticalOptions="EndAndExpand" 
-     BackgroundColor="Beige"
-     TextColor="Black"/>
-        <Label 
+            BackgroundColor="Beige"
+            Command="{Binding BackToProfileCommand}"
+            FontFamily="OpenSansRegular"
+            FontSize="16"
+            HorizontalOptions="EndAndExpand"
+            Text="Back To Profile"
+            TextColor="Black"
+            VerticalOptions="EndAndExpand" />
+        <Label
+            HorizontalOptions="Center"
             Text="View Your Order!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            VerticalOptions="Center" />
 
-        <CollectionView 
-    x:Name="CollectionView"
-    Grid.Row="3"
-    Grid.ColumnSpan="5"
-    EmptyView="No Items:("
-    ItemsLayout="VerticalGrid, 3"
-    ItemsSource="{Binding jewlerys}">
+        <CollectionView
+            x:Name="CollectionView"
+            Grid.Row="3"
+            Grid.ColumnSpan="5"
+            EmptyView="No Items:("
+            ItemsLayout="VerticalGrid, 3"
+            ItemsSource="{Binding jewlerys}">
 
 
             <CollectionView.ItemTemplate>
 
-                <DataTemplate x:DataType="models:Jewelry" x:DataType="viewmodels:ProfilePageViewModel">
+                <DataTemplate x:DataType="models:Jewelry">
 
 
 
-                   
+
                     <VerticalStackLayout
-                HeightRequest="200"
-                Spacing="7"
-                VerticalOptions="Center">
+                        HeightRequest="200"
+                        Spacing="7"
+                        VerticalOptions="Center">
 
                         <Label
-                    FontAttributes="Bold"
-                    FontSize="Small"
-                    Text="{Binding Name}"
-                    TextColor="Black" />
-                        <Image Aspect="AspectFit" Source="{Binding Photo}" 
-                       WidthRequest="100"
-                       HeightRequest="150"/>
+                            FontAttributes="Bold"
+                            FontSize="Small"
+                            Text="{Binding Name}"
+                            TextColor="Black" />
+                        <Image
+                            Aspect="AspectFit"
+                            HeightRequest="150"
+                            Source="{Binding Photo}"
+                            WidthRequest="100" />
 
                         <Label
-                    
-                    FontAttributes="Bold"
-                    FontSize="Small"
-                    Text="{Binding Price}"
-                    TextColor="Black"
-                    />
+                            FontAttributes="Bold"
+                            FontSize="Small"
+                            Text="{Binding Price}"
+                            TextColor="Black" />
 
-                        <Button
-                        Margin="0,15"
-                        BackgroundColor="Beige"
-                        Command="{Binding ShowItemsCommand }"
-                        FontFamily="OpenSansBold"
-                        TextColor="Black"
-                        Text="View Items In The Order" />
+                        
 
 
 

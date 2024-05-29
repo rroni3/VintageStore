@@ -130,28 +130,30 @@
                                 Text="{Binding Date}"
                                 TextColor="Black" />
 
-                           
+
                             <Label
                                 FontAttributes="Bold"
                                 FontSize="Small"
                                 Text="{Binding TotalPrice}"
-                                TextColor="Black" />
+                                TextColor="Black"/>
 
+                            <Label 
+                                Text="View Items In The Order">
 
                             <Label.GestureRecognizers>
                                 
                                 <TapGestureRecognizer
                                     
-                                    x:DataType="ViewModels:DisplayItemsPageViewModel"
-                                    Command="{Binding ShowItemsCommand, Source={RelativeSource AncestorType={x:Type viewmodels:DispalyItemsPageViewModel}}}"
-                                    Text="View Items In The Order"
+                                   
+                                    Command="{Binding ShowItemsCommand, Source={RelativeSource AncestorType={x:Type viewmodels:ProfilePageViewModel}}}"
+                                    
                                     CommandParameter="{Binding .}"
                                     NumberOfTapsRequired="1"
                                     
                                     />
 
                             </Label.GestureRecognizers>
-                          
+                          </Label>
 
 
 

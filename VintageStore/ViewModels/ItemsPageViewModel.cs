@@ -10,8 +10,11 @@ using VintageStore.Services;
 
 namespace VintageStore.ViewModels
 {
+
+    [QueryProperty(nameof(O), "orderItems")]
     public class ItemsPageViewModel:ViewModel
     {
+        public Order O {  get; set; }   
         public ObservableCollection<Jewelry> jewlerys { get; set; } = new ObservableCollection<Jewelry>();
         private StoreService storeService;
         public User _currentu { get; set; }
@@ -20,7 +23,9 @@ namespace VintageStore.ViewModels
 
 
         public ItemsPageViewModel()
+
         {
+            LoadJewleries();
             BackToProfileCommand = new Command(async () =>
             {
                 await Shell.Current.GoToAsync("Profile");
@@ -28,23 +33,15 @@ namespace VintageStore.ViewModels
 
         }
 
-        public async Task LoadJewleries(int orderId)
+        public void LoadJewleries()
         {
-            
             jewlerys.Clear();
-
-            int id = storeService.GetCurrentUser().Id;
-            jewlerys = await storeService.GetOrderJewleriesAsync(orderId);
-            if (jewlerys != null)
-                foreach (var item in jewlerys)
-                {
-                    jewlerys.Add(item);
-                    
-                }
-
-
-
+            foreach (var item in O.OrderItems) 
+            {
+               jewlerys.Add(item);
+            }
         }
 
+        
     }
 }

@@ -17,6 +17,7 @@ namespace VintageStore.ViewModels
     {
 
         private string _name;//שם 
+        private int _id;
         private Category _category;//קטגוריה
         private string _photo;//תמונה
         private int _price;//*מחיר*/
@@ -117,30 +118,25 @@ namespace VintageStore.ViewModels
 
                 if (photo != null)
                 {
-                    // save the file into local storage
+                   
+                    string filename = await UploadJewlImage(photo);
 
-                    //string localFilePath = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
+                    Shell.Current.DisplayAlert("image", " העלאת התמונה נכשלה", "ok");
 
-                    //using Stream sourceStream = await photo.OpenReadAsync();
-                    //using FileStream localFileStream = File.OpenWrite(localFilePath);
-
-                    //await sourceStream.CopyToAsync(localFileStream);
-                    string filename = await UploadProfileImage(photo);
-                    //service.LoggedInUser.Image = filename;
-                    
-
-                    Image = $"{StoreService.ImageUrl}{service.LoggedInUser.Image}";
                 }
 
             }
         }
 
-        private async Task<string> UploadProfileImage(FileResult photo)
+        private async Task<string> UploadJewlImage(FileResult photo)
         {
             try
             {
-                string filename = await service.UploadImage(photo);
-                return filename;
+                bool filename = await service.UploadImage(photo,_id);
+                if (filename == false)
+                {
+                    Shell.Current.DisplayAlert("image", " העלאת התמונה נכשלה", "ok");
+                }
             }
             catch (Exception ex) { }
             return null;
@@ -168,8 +164,12 @@ namespace VintageStore.ViewModels
 
             Jewelry j = new Jewelry() { Name = _name, Category = _category, Price = _price };
 
-            service.AddJewleryAsync(j);
-
+            _id=await service.AddJewleryAsync(j);
+            if (_id == -1)
+            {
+                ///להוסיף הודעת שגיאה
+            }
+            
         }
 
 
