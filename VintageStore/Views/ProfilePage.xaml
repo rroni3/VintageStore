@@ -137,13 +137,21 @@
                                 Text="{Binding TotalPrice}"
                                 TextColor="Black" />
 
-                            <!--<Button
-   Margin="0,15"
-   BackgroundColor="Beige"
-   Command="{Binding ShowItemsCommand }"
-   FontFamily="OpenSansBold"
-   TextColor="Black"
-   Text="View Items In Order" />-->
+
+                            <Label.GestureRecognizers>
+                                
+                                <TapGestureRecognizer
+                                    
+                                    x:DataType="ViewModels:DisplayItemsPageViewModel"
+                                    Command="{Binding ShowItemsCommand, Source={RelativeSource AncestorType={x:Type viewmodels:DispalyItemsPageViewModel}}}"
+                                    Text="View Items In The Order"
+                                    CommandParameter="{Binding .}"
+                                    NumberOfTapsRequired="1"
+                                    
+                                    />
+
+                            </Label.GestureRecognizers>
+                          
 
 
 

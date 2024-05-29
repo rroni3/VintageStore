@@ -21,7 +21,7 @@ namespace VintageStore.ViewModels
         public ObservableCollection<Jewelry> jewlerys { get; set; } = new ObservableCollection<Jewelry>();
         private StoreService storeService;
         private List<Order> _FullList;
-        public ICommand ShowItemsCommand {  get; set; }
+        public ICommand ShowItemsCommand<Order> {  get; set; }
         public ProfilePageViewModel(StoreService storeService)
     {
         this.storeService = storeService;
