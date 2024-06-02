@@ -18,10 +18,10 @@ namespace VintageStore.ViewModels
 
         private string _name;//שם 
         private int _id;
-        private Category _category;//קטגוריה
+        private string _category;//קטגוריה
         private string _photo;//תמונה
         private int _price;//*מחיר*/
-        public ObservableCollection<Category> categorieoptions =new ObservableCollection<Category>();
+        public ObservableCollection<string> categorieoptions { get; set; } = new ObservableCollection<string>();
         
             
 
@@ -56,7 +56,7 @@ namespace VintageStore.ViewModels
         //    set => _Id = value;
         //}
 
-        public Category Category
+        public string Category
         {
             get => _category;
             set { _category = value; ((Command)AddJewleryCommand).ChangeCanExecute(); }
@@ -82,10 +82,10 @@ namespace VintageStore.ViewModels
         public AdminPageViewModel(StoreService storeService)
         {
 
-            categorieoptions.Add(new Category() { Id = 1, Name = "Necklace" });
-            categorieoptions.Add(new Category() { Id = 2, Name = "Braclet" });
-            categorieoptions.Add(new Category() { Id = 3, Name = "Earrings" });
-            categorieoptions.Add(new Category() { Id = 4, Name = "Rings" });
+            categorieoptions.Add( "Necklace" );
+            categorieoptions.Add("Braclet" );
+            categorieoptions.Add( "Earrings" );
+            categorieoptions.Add("Rings" );
 
             service = storeService;
             if(!IsAdmin()) 
@@ -162,14 +162,15 @@ namespace VintageStore.ViewModels
         {
 
 
-            Jewelry j = new Jewelry() { Name = _name, Category = _category, Price = _price };
+            Jewelry j = new Jewelry() { Name = _name, Category =new Category(_category ), Price = _price };
 
             _id=await service.AddJewleryAsync(j);
             if (_id == -1)
             {
-                ///להוסיף הודעת שגיאה
+                Shell.Current.DisplayAlert("add jewlery", "הוספת התכשיט נכשלה", "ok");
             }
-            
+            Shell.Current.DisplayAlert("add jewlery", "הוספת התכשיט בוצעה בהצלחה, מוזמן להוסיף לתכשיט תמונה", "ok");
+
         }
 
 
