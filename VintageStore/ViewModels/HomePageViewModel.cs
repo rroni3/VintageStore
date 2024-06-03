@@ -95,13 +95,22 @@ namespace VintageStore.ViewModels
             foreach (var item in SelectedJewls)
             {
                 Jewelry j= item as Jewelry;
-                totalp = totalp + j.Price;
+                totalp = (int)(totalp + j.Price);
                 jewels.Add(j);
             }
             Order newOrder = new Order() { Date = DateTime.Now,  OrderItems=jewels, TotalPrice = totalp, User = storeService.GetCurrentUser() };
-            await storeService.AddOrder(newOrder);
+            bool b=await storeService.AddOrderAsync(newOrder);
             SelectedJewls.Clear();
-            Shell.Current.DisplayAlert("order", "ההזמנה בוצעה בהצלחה", "ok");
+            if (b == false)
+            {
+                Shell.Current.DisplayAlert("error", "ביצוע ההזמנה נכשל", "ok");
+            }
+            else
+            {
+                Shell.Current.DisplayAlert("order", "ההזמנה בוצעה בהצלחה", "ok");
+
+            }
+            
         }
     }
 }

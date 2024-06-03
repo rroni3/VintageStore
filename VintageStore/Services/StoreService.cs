@@ -239,7 +239,7 @@ namespace VintageStore.Services
             {
 
 
-                var response = await _httpClient.GetAsync($"{URL}GetOrders?Id={userId}");
+                var response = await _httpClient.GetAsync($"{URL}GetOrders?OrderId={userId}");
 
                 switch (response.StatusCode)
                 {
@@ -292,7 +292,7 @@ namespace VintageStore.Services
             {
 
 
-                var response = await _httpClient.GetAsync($"{URL}GetOrderJewleries?Id={orderId}");
+                var response = await _httpClient.GetAsync($"{URL}GetOrderJewleries?OrderId={orderId}");
 
                 switch (response.StatusCode)
                 {
@@ -340,7 +340,7 @@ namespace VintageStore.Services
         }
 
 
-        public async Task<bool> AddOrder(Order o)
+        public async Task<bool> AddOrderAsync(Order o)
         {
             try
             {
@@ -351,7 +351,7 @@ namespace VintageStore.Services
 
                 switch (response.StatusCode)
                 {
-                    case (HttpStatusCode.OK):
+                    case (HttpStatusCode.Created):
                         {
                             
                             return true;

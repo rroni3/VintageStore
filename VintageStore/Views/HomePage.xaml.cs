@@ -29,9 +29,9 @@ public partial class HomePage : ContentPage
     //{
     //    return new List<Jewelry>
     //    {
-    //        new Jewelry { Id = 1, Name = "yali top", Category = "shirt", Size = "s", Color = "baby blue", photo = "yali_top.svg" },
-    //        new Jewelry { Id = 2, Name = "Ella hat", Category = "jewlery", Size = "unisex", Color = "gold", photo = "hand_jewelry.jpg" },
-    //        new Jewelry { Id = 3, Name = "Noa pants", Category = "pants" ,Size = "s", Color = "green", photo = "neclace.jpg" }
+    //        new Jewelry { OrderId = 1, Name = "yali top", Category = "shirt", Size = "s", Color = "baby blue", photo = "yali_top.svg" },
+    //        new Jewelry { OrderId = 2, Name = "Ella hat", Category = "jewlery", Size = "unisex", Color = "gold", photo = "hand_jewelry.jpg" },
+    //        new Jewelry { OrderId = 3, Name = "Noa pants", Category = "pants" ,Size = "s", Color = "green", photo = "neclace.jpg" }
     //    };
 
 

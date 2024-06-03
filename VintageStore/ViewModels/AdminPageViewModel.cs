@@ -49,7 +49,7 @@ namespace VintageStore.ViewModels
             set { _name = value; ((Command)AddJewleryCommand).ChangeCanExecute(); }
 
         }
-        //public int Id
+        //public int OrderId
         //{
         //    get => _Id;
 
@@ -162,14 +162,19 @@ namespace VintageStore.ViewModels
         {
 
 
-            Jewelry j = new Jewelry() { Name = _name, Category =new Category(_category ), Price = _price };
+            Jewelry j = new Jewelry() { Name = _name, Category = new Category(_category ), Price = _price };
 
             _id=await service.AddJewleryAsync(j);
             if (_id == -1)
             {
                 Shell.Current.DisplayAlert("add jewlery", "הוספת התכשיט נכשלה", "ok");
             }
-            Shell.Current.DisplayAlert("add jewlery", "הוספת התכשיט בוצעה בהצלחה, מוזמן להוסיף לתכשיט תמונה", "ok");
+            else
+            {
+                Shell.Current.DisplayAlert("add jewlery", "הוספת התכשיט בוצעה בהצלחה, מוזמן להוסיף לתכשיט תמונה", "ok");
+
+            }
+            
 
         }
 
