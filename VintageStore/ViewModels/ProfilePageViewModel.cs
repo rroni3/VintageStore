@@ -26,6 +26,7 @@ namespace VintageStore.ViewModels
     {
         this.storeService = storeService;
             _currentu = storeService.GetCurrentUser();
+            LoadOrders();
             ShowItemsCommand = new Command<Order>(async (o) =>
             {
                 Dictionary<string, object> dict = new Dictionary<string, object>();
@@ -41,7 +42,7 @@ namespace VintageStore.ViewModels
         public async Task LoadOrders()
         {
             orders.Clear();
-            jewlerys.Clear();
+            //jewlerys.Clear();
 
             int id = storeService.GetCurrentUser().Id;
              _FullList = await storeService.GetOrdersAsync(id);

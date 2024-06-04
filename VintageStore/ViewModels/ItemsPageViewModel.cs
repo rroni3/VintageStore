@@ -23,7 +23,6 @@ namespace VintageStore.ViewModels
 
 
         public ItemsPageViewModel()
-
         {
             LoadJewleries();
             BackToProfileCommand = new Command(async () =>

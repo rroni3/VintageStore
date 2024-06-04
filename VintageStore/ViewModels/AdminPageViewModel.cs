@@ -108,8 +108,6 @@ namespace VintageStore.ViewModels
             UploadPhotoCommand = new Command(async () => { await Shell.Current.DisplayAlert("g", "g", "ok"); });
             AddPhotoCommand = new Command(async () => { UploadImage(); });
         }
-
-        
         private async Task UploadImage()
         {
             if (MediaPicker.Default.IsCaptureSupported)
@@ -118,16 +116,21 @@ namespace VintageStore.ViewModels
 
                 if (photo != null)
                 {
-                   
+
                     string filename = await UploadJewlImage(photo);
 
-                    Shell.Current.DisplayAlert("image", " העלאת התמונה נכשלה", "ok");
+
 
                 }
+                else
+                {
+                    Shell.Current.DisplayAlert("image", " העלאת התמונה נכשלה", "ok");
+                }
+
 
             }
         }
-
+       
         private async Task<string> UploadJewlImage(FileResult photo)
         {
             try
@@ -136,6 +139,10 @@ namespace VintageStore.ViewModels
                 if (filename == false)
                 {
                     Shell.Current.DisplayAlert("image", " העלאת התמונה נכשלה", "ok");
+                }
+                else 
+                {
+                    Shell.Current.DisplayAlert("image", " העלאת התמונה בוצעה בהצלחה", "ok");
                 }
             }
             catch (Exception ex) { }
