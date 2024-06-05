@@ -164,13 +164,13 @@ namespace VintageStore.Services
 
         }
 
-        internal async Task<bool> UploadImage(FileResult photo,int id)
+        public async Task<bool> UploadImage(FileResult photo,int id)
         {
             byte[] streamBytes;
             //take the photo and make it a byte array
-            using (var stream = await photo.OpenReadAsync())
             using (var memoryStream = new MemoryStream())
             {
+                var stream = await photo.OpenReadAsync();
                 await stream.CopyToAsync(memoryStream);
                 streamBytes = memoryStream.ToArray();
             }
@@ -181,7 +181,7 @@ namespace VintageStore.Services
                 fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg");
                 //"file" --זהה לשם הפרמטר של הפעולה בשרת שמייצגת את הקובץ
                 content.Add(fileContent, "file", photo.FileName);
-                var response = await _httpClient.PostAsync(@$"{URL}UploadProfile/{id}", content);
+                var response = await _httpClient.PostAsync(@$"{URL}uploadjewlery/{id}", content);
                 if (response.IsSuccessStatusCode)
                 {
                     //string jsonContent = await response.Content.ReadAsStringAsync();

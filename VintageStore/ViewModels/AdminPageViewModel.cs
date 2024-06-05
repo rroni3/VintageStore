@@ -32,7 +32,7 @@ namespace VintageStore.ViewModels
 
         public bool IsAdmin()
         {
-            if (service.GetCurrentUser().UserName == "Admin") { return true; }
+            if (service.GetCurrentUser().UserName == "admin") { return true; }
             return false;
         }
 
@@ -90,7 +90,7 @@ namespace VintageStore.ViewModels
             service = storeService;
             if(!IsAdmin()) 
             {
-                Shell.Current.DisplayAlert("Admin Page", "אין לך הרשאה לעמוד המנהל", "ok");
+                 Shell.Current.DisplayAlert("Admin Page", "אין לך הרשאה לעמוד המנהל", "ok");
 
 
                 Shell.Current.GoToAsync("///HomePage");
@@ -110,43 +110,45 @@ namespace VintageStore.ViewModels
         }
         private async Task UploadImage()
         {
+            FileResult photo=null;
             if (MediaPicker.Default.IsCaptureSupported)
             {
-                FileResult photo = await MediaPicker.Default.PickPhotoAsync();
+                 photo = await MediaPicker.Default.PickPhotoAsync();
+            }
 
-                if (photo != null)
-                {
+            if (photo != null)
+             {
 
-                    string filename = await UploadJewlImage(photo);
+                    await UploadJewlImage(photo);
 
-
-
-                }
-                else
-                {
-                    Shell.Current.DisplayAlert("image", " העלאת התמונה נכשלה", "ok");
-                }
 
 
             }
+             else
+             {
+                   await Shell.Current.DisplayAlert("image", " העלאת התמונה נכשלה", "ok");
+            }
+
+
+            
         }
        
-        private async Task<string> UploadJewlImage(FileResult photo)
+        private async Task UploadJewlImage(FileResult photo)
         {
             try
             {
                 bool filename = await service.UploadImage(photo,_id);
                 if (filename == false)
                 {
-                    Shell.Current.DisplayAlert("image", " העלאת התמונה נכשלה", "ok");
+                    await Shell.Current.DisplayAlert("image", " העלאת התמונה נכשלה", "ok");
                 }
                 else 
                 {
-                    Shell.Current.DisplayAlert("image", " העלאת התמונה בוצעה בהצלחה", "ok");
+                    await Shell.Current.DisplayAlert("image", " העלאת התמונה בוצעה בהצלחה", "ok");
                 }
             }
             catch (Exception ex) { }
-            return null;
+            
         }
     
 
@@ -174,11 +176,11 @@ namespace VintageStore.ViewModels
             _id=await service.AddJewleryAsync(j);
             if (_id == -1)
             {
-                Shell.Current.DisplayAlert("add jewlery", "הוספת התכשיט נכשלה", "ok");
+               await Shell.Current.DisplayAlert("add jewlery", "הוספת התכשיט נכשלה", "ok");
             }
             else
             {
-                Shell.Current.DisplayAlert("add jewlery", "הוספת התכשיט בוצעה בהצלחה, מוזמן להוסיף לתכשיט תמונה", "ok");
+                await Shell.Current.DisplayAlert("add jewlery", "הוספת התכשיט בוצעה בהצלחה, מוזמן להוסיף לתכשיט תמונה", "ok");
 
             }
             

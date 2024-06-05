@@ -163,7 +163,7 @@ namespace VintageStore.ViewModels
         #region פעולות עזר
         private bool ValidateUser()
         {
-            return !(string.IsNullOrEmpty(UserName) || UserName.Length < 3);
+            return (!string.IsNullOrEmpty(UserName));
         }
         private bool ValidatePassWord()
         {

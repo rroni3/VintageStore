@@ -135,7 +135,7 @@ namespace VintageStore.ViewModels
             {
                 await Shell.Current.GoToAsync("Login");
             });
-            RegisterCommand = new Command(Register,EnableRegister);
+            RegisterCommand = new Command(async()=>await Register(),EnableRegister);
         }
 
         public bool EnableRegister()
@@ -143,22 +143,26 @@ namespace VintageStore.ViewModels
         return !(string.IsNullOrEmpty(FirstName)||string.IsNullOrEmpty(LastName)||string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(UserName));
         }
 
-        private async void Register()
+        private async Task Register()
         {
 
-            //ToDo
-            //if (!EnableRegister)
-            //{
-            //    Shell.Current.DisplayAlert("register", "ההרשמה בוצעה בהצלחה", "ok");
-            //    return ;
-            //}
-            User u= new User() { Email = Email, FirstName= FirstName, LastName=LastName,  UserPswd=Password, UserName = UserName };
+            
+            if (!EnableRegister())
+            {
+                await Shell.Current.DisplayAlert("register", "אחד או יותר מהשדות לא תקינים, אנא וודא שבכולם אחד או יותר תווים.", "ok");
+                return;
+            }
+            User u = new User() { Email = Email, FirstName= FirstName, LastName=LastName,  UserPswd=Password, UserName = UserName };
 
           bool result= await service.RegisterAsync(u);
             if(result==true)
             {
                 await Shell.Current.GoToAsync("///HomePage");
-                Shell.Current.DisplayAlert("register", "ההרשמה בוצעה בהצלחה", "ok");
+                await Shell.Current.DisplayAlert("register", "ההרשמה בוצעה בהצלחה", "ok");
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert("register", "אחד או יותר מהשדות תפוסים, אנא שנה אותם עבור הרשמה.", "ok");
             }
         }
 
