@@ -96,15 +96,15 @@
                 Text="{Binding _currentu.UserPswd}"
                 TextColor="Black" />
 
-            <Label
+            <!--<Label
                 Grid.Row="6"
                 Grid.ColumnSpan="5"
                 FontAttributes="Bold"
                 FontSize="Medium"
                 Text="Your Orders:"
-                TextColor="Black" />
+                TextColor="Black" />-->
 
-            <CollectionView
+            <!--<CollectionView
                 x:Name="CollectionView"
                 Grid.Row="7"
                 Grid.ColumnSpan="5"
@@ -164,7 +164,7 @@
 
 
                     </DataTemplate>
-                    <!--<DataTemplate x:DataType="VieweModel">
+                    --><!--<DataTemplate x:DataType="VieweModel">
 
                         <Button
 Margin="0,15"
@@ -174,13 +174,13 @@ FontFamily="OpenSansBold"
 TextColor="Black"
 Text="View Items In Order" />
 
-                    </DataTemplate>-->
+                    </DataTemplate>--><!--
 
 
                 </CollectionView.ItemTemplate>
 
 
-            </CollectionView>
+            </CollectionView>-->
         </Grid>
 
 
