@@ -135,7 +135,7 @@ namespace VintageStore.ViewModels
             {
                 await Shell.Current.GoToAsync("Login");
             });
-            RegisterCommand = new Command(async()=>await Register(),EnableRegister);
+            RegisterCommand = new Command(async()=>await Register());
         }
 
         public bool EnableRegister()
